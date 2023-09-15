@@ -1,7 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Typography } from '@mui/material';
-
 
 import MobileYoutubeLinkPage from '@pages/MobileYoutubeLinkPage';
 import MobileAnnouncementPage from '@pages/MobileAnouncementPage';
@@ -14,12 +12,7 @@ const GameWonPage = lazy(() => import('@pages/GameWonPage'));
 const GameLostPage = lazy(() => import('@pages/GameLostPage'));
 
 const PrivateLayout = () => (
-  <div className='h-screen'>
-    <div className='py-[25px] text-center' style={{ boxShadow: '1px -1px 5px 1px grey' }}>
-      <Typography variant='h5' className='font-medium'>
-        AdSure
-      </Typography>
-    </div>
+  <div className='h-screen bg-black'>
     <div className='max-w-[440px] w-full h-[calc(100vh-82px)] overflow-y-auto'>
       <div className='mx-4 my-7' style={{height: '90%'}}>
         <Suspense>

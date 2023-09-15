@@ -5,9 +5,6 @@ import ReactPlayer from 'react-player';
 import ReactCardFlip from 'react-card-flip';
 import styles from './style';
 
-const imageUrl =
-  'https://developers.google.com/static/admob/images/full-screen/image01.png';
-const videoId = 'dFg8Nu2X5Mo';
 const MediaPlayer = (props) => {
   const { mediaType, onVideoend, data } = props;
 
@@ -25,10 +22,10 @@ const MediaPlayer = (props) => {
   let interval;
 
   useEffect(() => {
-    setQRHeight(qrRef.current.clientHeight - 20);
+    setQRHeight(qrRef.current.clientHeight - 70);
     setVideoDimensions({
       width: videoRef.current.clientWidth,
-      height: videoRef.current.clientHeight,
+      height: videoRef.current.clientHeight - 48,
     });
   }, []);
 
@@ -62,6 +59,7 @@ const MediaPlayer = (props) => {
   };
 
   const screen = () => {
+    if(!data) return <div />
     if (data && data?.type === 'advertise_here') {
       return (
         <div
@@ -83,6 +81,15 @@ const MediaPlayer = (props) => {
         />
       );
     }
+    if(mediaType === 'announcement'){
+     return(
+        <div
+          style={styles.announcementBanner}
+        >
+          <div style={styles.announcementText}>{data?.media?.title ?? 'Happy birthday'}</div>
+        </div>
+     )
+    }
     return (
       <ReactPlayer
         url={mediaUrl}
@@ -102,7 +109,7 @@ const MediaPlayer = (props) => {
         {screen()}
         <div />
       </div>
-      <div style={styles.bottomContainer} ref={qrRef}>
+      <div style={styles.bottomContainer} className='backdrop-blur' ref={qrRef}>
         <div style={styles.bottomLeft}>
           {!isDisableFlip ? (
             <ReactCardFlip isFlipped={flip} flipDirection='vertical'>
