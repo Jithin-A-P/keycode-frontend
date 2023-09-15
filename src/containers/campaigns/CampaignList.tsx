@@ -1,12 +1,6 @@
 import { DataTable } from '@components';
-import { useAppDispatch } from '@store/store';
-
-// import { useLazyGetUsersQuery } from './store/api';
 
 const CampaignList = () => {
-  const dispatch = useAppDispatch();
-
-  // const navigate = useNavigate();
 
   const columns: any = [
     {
