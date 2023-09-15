@@ -22,6 +22,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import { CardGrid, HeaderWithButton } from '@components';
+import { useGetCatalogsQuery } from '@services/api';
 
 const CreateCampaign = () => {
   const [type, setType] = useState('Time slot');
@@ -31,6 +32,9 @@ const CreateCampaign = () => {
   const [campaignName, setCampaignName] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+
+  const { data: catalogsResponse } = useGetCatalogsQuery('');
+  const catalogs = catalogsResponse?.data;
 
   const navigate = useNavigate();
 
@@ -179,7 +183,7 @@ const CreateCampaign = () => {
           }}
         >
           <CardGrid
-          data={{}}
+            data={catalogs}
             // cardStyle={{ width: 150, height: 150 }}
             // cardMediaStyle={{ height: 80, minWidth: 150 }}
             // md={3}

@@ -24,6 +24,7 @@ const CardGrid = ({ data }) => {
         <Grid item xs={12} sm={4} md={2} key={item.id}>
           <Card sx={{ maxWidth: 200 }}>
             <CardMedia
+            
               sx={{ height: 140 }}
               component={(isVideo(item.url) && 'video') || 'image'}
               style={{ aspectRatio: 200 / 140 }}
