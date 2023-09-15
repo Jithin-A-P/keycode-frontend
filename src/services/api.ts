@@ -19,9 +19,12 @@ export const api = createApi({
       query: () => `/kiosks/1/queue/next`,
       transformResponse: (data: any) => data?.data
     }),
+    getCampaignById: builder.query({
+      query: (id) => `/campaigns/${id}`,
+    }),
   }),
 })
 
-export const { useGetCatalogsQuery, useGetCampaignsQuery, useGetKIOSKSchedulerQuery, useGetKiosksQuery } = api;
+export const { useGetCatalogsQuery, useGetCampaignsQuery, useGetKIOSKSchedulerQuery, useGetKiosksQuery, useGetCampaignByIdQuery } = api;
 
 export default api;

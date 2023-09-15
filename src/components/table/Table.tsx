@@ -5,10 +5,27 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
+import { getFormattedDate } from '@utils/date';
+import { useNavigate } from 'react-router-dom';
+
+const statusMapper = {
+    ACTIVE: { label: 'Active', color: 'success' },
+    expired: { label: 'Expired', color: 'primary' },
+    default: { label: 'Expired', color: 'primary' },
+};
 
 const CustomTable = (props) => {
-
     const { headers, data } = props;
+
+    const navigate = useNavigate();
+
+    const renderStatus = (status = 'expired') => {
+        const { label, color } = statusMapper[status] || statusMapper.default;
+        return (
+            <Chip label={label} color={color} variant="outlined" />
+        )
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -22,11 +39,13 @@ const CustomTable = (props) => {
                 </TableHead>
                 <TableBody>
                     {data.map((row: any) => (
-                        <TableRow key={row.id}>
-                            <TableCell>{row.name}</TableCell>
-                            <TableCell>{row.duration}</TableCell>
-                            <TableCell>{row.status}</TableCell>
-                            <TableCell>{row.price}</TableCell>
+                        <TableRow key={row.id} onClick={() => navigate(`/admin/campaigns/${row.id}`)} className='cursor-pointer'>
+                            <TableCell className='capitalize'>{row.name}</TableCell>
+                            <TableCell>{getFormattedDate(row.startDate)}</TableCell>
+                            <TableCell>{getFormattedDate(row.endDate)}</TableCell>
+                            <TableCell>{row.kioskCount || '-'}</TableCell>
+                            <TableCell>{renderStatus(row.status)}</TableCell>
+                            <TableCell>Rs {row.totalPrice}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

@@ -10,7 +10,7 @@ import RoutePaths from './RoutesPath';
 const PageNotFound = lazy(() => import('@pages/PageNotFound'));
 const CatalogPage = lazy(() => import('@pages/CatalogPage'));
 const CampaignPage = lazy(() => import('@pages/CampaignPage'));
-const AdScreenPage = lazy(() => import('@pages/AdScreen'));
+const CampaignDetailsPage = lazy(() => import('@pages/CampaignDetailsPage'));
 const GamesPage = lazy(() => import('@pages/Games'));
 const PlayerPage = lazy(() => import('@pages/Player'));
 const Flappy = lazy(() => import('@pages/Games/Flappy'));
@@ -45,6 +45,7 @@ const PrivateLayout = () => {
               />
               <Route path={RoutePaths.CATALOGS} element={<CatalogPage />} />
               <Route path={RoutePaths.CAMPAIGNS} element={<CampaignPage />} />
+              <Route path={RoutePaths.CAMPAIGN_DETAILS} element={<CampaignDetailsPage />} />
               <Route
                   path={RoutePaths.GAMES} element={<GamesPage />}
               />
