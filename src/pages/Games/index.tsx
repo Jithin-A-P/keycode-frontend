@@ -7,7 +7,7 @@ const Games = () =>{
     const socket = useRef(null);
     const [ropeYState, setRopeYState] = useState(0);
     useEffect(() => {
-      socket.current = (io as any).connect('http://192.168.3.186:5050', {
+      socket.current = (io as any).connect('http://localhost:5050', {
         query: {
           type: 'screen',
           screenId: 123
