@@ -3,21 +3,43 @@
     font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 32pt;
+    line-height: 1.3;
 }
 
 .games-header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    align-items: flex-end;
 }
 
 .available-games {
     color: white;
     font-family: 'Syne', sans-serif;
     font-weight: 500;
+    font-size: 14pt;
 }
 
-.games-carousel {
+.see-all {
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+}
+
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.game-card {
     border-radius: 30px;
-    overflow: hidden;
+    width: 330px;
+    margin-right: 20px;
+    padding-block: 10px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+    display: none;
 }

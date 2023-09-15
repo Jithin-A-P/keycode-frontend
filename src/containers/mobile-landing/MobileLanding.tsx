@@ -12,6 +12,7 @@ import {
   AccordionDetails,
   Card,
   CardMedia,
+  makeStyles,
 } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
@@ -88,20 +89,34 @@ const MobileLanding = () => {
     //     </Accordion>
     //   </div>
     // </div>
+
     <div>
       <h2 className='mobile-head'>HI, PLAYER! READY TO PLAY?</h2>
       <br />
       <div className='games-header'>
         <h2 className='available-games'>AVAILABLE GAMES</h2>
-        <h2 className='available-games'>See All</h2>
+        <button
+        type='button'
+          className='see-all'
+          onClick={() => {
+            navigate('url');
+          }}
+        >
+          See All
+        </button>
       </div>
-      <Card sx={{ borderRadius: 2 }}>
-        <CardMedia
-          style={{ aspectRatio: 9 / 16 }}
-          image={require(`../../assets/images/cola-ad.png`)}
-          title='Name'
+      <div className='scrolling-wrapper'>
+        <img
+          className='game-card'
+          src={require(`../../assets/images/cola-ad.png`)}
+          alt=''
         />
-      </Card>
+        <img
+          className='game-card'
+          src={require(`../../assets/images/cola-ad.png`)}
+          alt=''
+        />
+      </div>
     </div>
   );
 };
