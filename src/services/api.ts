@@ -11,9 +11,12 @@ export const api = createApi({
     getCampaigns: builder.query({
       query: (name) => `pokemon/${name}`,
     }),
+    getKIOSKScheduler: builder.query({
+      query: (name) => `pokemon/${name}`,
+    }),
   }),
 })
 
-export const { useGetCatalogsQuery, useGetCampaignsQuery } = api;
+export const { useGetCatalogsQuery, useGetCampaignsQuery, useGetKIOSKSchedulerQuery } = api;
 
 export default api;

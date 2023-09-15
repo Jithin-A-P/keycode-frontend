@@ -4,7 +4,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 import api from '@services/api';
-import {kioskApis} from '@pages/AdScreen/api'
 import rootReducer from './reducer';
 
 const { reducerPath, reducer, middleware } = api;
@@ -13,7 +12,6 @@ const store = configureStore({
   reducer: {
     rootReducer,
     [reducerPath]: reducer,
-    [kioskApis.reducerPath]: kioskApis.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),
