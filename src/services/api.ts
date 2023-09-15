@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://192.168.3.91:5000/api' }),
@@ -15,7 +16,8 @@ export const api = createApi({
       query: () => `/kiosks`,
     }),
     getKIOSKScheduler: builder.query({
-      query: (name) => `pokemon/${name}`,
+      query: () => `/kiosks/1/queue/next`,
+      transformResponse: (data: any) => data?.data
     }),
   }),
 })
