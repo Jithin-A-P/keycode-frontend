@@ -27,7 +27,7 @@ const MobileYoutubeLinkPage = () => {
   };
 
   const uploadSuccessView = () => (
-    <div className='items-center flex flex-col justify-center h-full'>
+    <div className='items-center flex flex-col justify-center h-full' style={{background: '#171717'}}>
       <span className='text-center text-white'>
         Your YouTube shorts have been uploaded successfully. Your Ad will be
         played after the current running Ad. Please wait...
@@ -39,7 +39,7 @@ const MobileYoutubeLinkPage = () => {
   if (uploaded) return uploadSuccessView();
 
   return (
-    <div className='items-center flex flex-col justify-center h-full'>
+    <div className='items-center flex flex-col justify-center h-full' style={{background: '#171717'}}>
       <div className='mb-6 text-center w-[90%] text-white'>
         Showcase your YouTube Shorts with us!. Enter the YouTube shorts link
         below:

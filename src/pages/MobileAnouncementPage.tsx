@@ -24,7 +24,7 @@ const MobileAnnouncementPage = () => {
   };
 
   const uploadSuccessView = () => (
-    <div className='items-center flex flex-col justify-center h-full'>
+    <div className='items-center flex flex-col justify-center h-full'  style={{background: '#171717'}}>
       <span className='text-center text-white'>
         Your announcement have been uploaded successfully. Your Ad will be
         played after the current running Ad. Please wait...
@@ -36,7 +36,7 @@ const MobileAnnouncementPage = () => {
   if (uploaded) return uploadSuccessView();
 
   return (
-    <div className='items-center flex flex-col justify-center h-full'>
+    <div className='items-center flex flex-col justify-center h-full'  style={{background: '#171717'}}>
       <div className='mb-6 text-center w-[90%] text-white'>
         Provide a detailed description of your Ad announcement. Include all the
         important information you want to convey to your audience below:
