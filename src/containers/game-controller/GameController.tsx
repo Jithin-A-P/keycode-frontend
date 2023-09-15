@@ -6,6 +6,7 @@ import {
   usePushToKioskRequestIdMutation,
 } from '@services/api';
 import { io } from 'socket.io-client';
+import { useNavigate } from 'react-router-dom';
 
 const GameController = () => {
   const socket = useRef(null);
@@ -13,6 +14,7 @@ const GameController = () => {
   const [status, setStatus] = useState(null);
   const [player, setPlayer] = useState('');
   const [gameAlreadyRunning, setGameAlreadyRunning] = useState(false);
+  const navigate = useNavigate()
 
   const [pushToKioskQueueById, result] = usePushToKioskRequestIdMutation();
 
@@ -48,11 +50,12 @@ const GameController = () => {
       const playerName = result.data.data.player;
       setPlayer(playerName);
       socket.current.on('game_ended', (data) => {
-        console.log(data.winner, playerName, data.winner === playerName);
-        if (data.winner === playerName) {
-          setStatus(true);
-        } else {
-          setStatus(false);
+        console.log(data.winner, playerName, data.winner === playerName );
+        if(data.winner === playerName){
+          navigate('/game-won')
+        }
+        else{
+          navigate('/game-lost')
         }
         socket.current.disconnect();
       });
