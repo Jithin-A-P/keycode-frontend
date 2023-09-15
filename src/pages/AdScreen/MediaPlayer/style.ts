@@ -58,13 +58,13 @@ export default {
         backgroundRepeat: 'no-repeat',
     },
     announcementText:{
-      color: '#ffffff',
+      color: '#5B1982',
       fontSize: 60,
       display: 'flex',
+      paddingTop: '30%',
       justifyContent: 'center',
-      alignItems: 'center',
-      height: '100%',
-      padding: '0px 20px',
+      paddingLeft: '20px',
+      paddingRight: '20px',
       fontWeight: '600',
       textAlign: 'center' as const
     }

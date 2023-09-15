@@ -1,4 +1,5 @@
-import { Button } from '@components';
+
+import { useParams } from 'react-router-dom';
 import './styles.css';
 import { useEffect, useRef, useState } from 'react';
 import { usePushToKioskQueueByIdMutation, usePushToKioskRequestIdMutation } from '@services/api';
@@ -69,21 +70,19 @@ const GameController = () => {
     }
   }, [result.data])
   
-  
   if (!gameAlreadyRunning) {
     return (
       <div>
-        {/* {status !== null ? status: 'Game runnning'} */}
         {!showButtons ? (
           'Waiting for game to start'
         ) : (
-          <Button
-            handleButtonClick={() => {
-              socket.current.emit("button_click", {player});
-            }}
-          >
-            Player
-          </Button>
+          <button type='button'
+          onClick={() => {
+            socket.current.emit("button_click", {player});
+          }}
+        >
+          Player
+        </button>
         )}
       </div>
     );

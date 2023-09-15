@@ -1,16 +1,12 @@
-import { Typography } from '@mui/material';
 import './styles.css';
 
-const GameLost = () => {
-  const x = [];
-  return (
+const GameLost = () => (
     <div className='game-lost'>
       <img src='assets/you-lose.png' alt='You win' className='you-lost-img' />
-      <Typography className='game-lost-text'>
+      <p className='game-lost-text'>
         Unlucky, please try again later
-      </Typography>
+      </p>
     </div>
   );
-};
 
 export default GameLost;

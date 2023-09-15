@@ -105,14 +105,14 @@ const SpinTheWheel = () => {
         prizeNumber={prize}
         onStopSpinning={showWinnings}
         backgroundColors={[
-          '#FFC329',
-          '#80a3d8',
-          '#31FF83 ',
-          '#D6CDEA',
-          '#FFC329',
-          '#80a3d8',
-          '#31FF83',
-          '#D6CDEA',
+          '#FDFFB4',
+          '#DBEAFF',
+          '#DDFFF1 ',
+          '#FFE8EE',
+          '#FDFFB4',
+          '#DBEAFF',
+          '#DDFFF1',
+          '#FFE8EE',
         ]}
         outerBorderColor='#14021D'
         radiusLineColor='#FFF853'

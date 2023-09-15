@@ -4,10 +4,11 @@
     align-items: center;
     justify-content: center;
     min-height: 70vh;
+    color: white;
 }
 
 .game-lost-text {
-    font-family: 'Lilita One', cursive;
+    font-family: 'Syne', cursive;
     font-size: 16pt;
     margin-top: 50px;
 }

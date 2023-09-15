@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
 }
 
 .ripple {
@@ -18,11 +19,12 @@
 .reward-button {
     background-color: #3da6fc;
     color: #ffffff;
+    margin-top: 100px;
     border-radius: 50%;
     height: 100px;
     width: 100px;
     padding: 20px;
-    font-family: 'Lilita One', cursive;
+    font-family: 'Syne', sans-serif;
     font-size: 16pt;
     animation: expand-contract 2s infinite;
 }
@@ -35,12 +37,12 @@
 }
 
 .you-win-text {
-    font-family: 'Lilita One', cursive;
+    font-family: 'Syne', cursive;
     font-size: 22pt;
 }
 
 .spin-wheel-text {
-    font-family: 'Lilita One', cursive;
+    font-family: 'Syne', cursive;
     font-size: 18pt;
 }
 
@@ -50,7 +52,7 @@
     }
 
     to {
-        width: 1.0;
+        scale: 1.0;
     }
 }
 
