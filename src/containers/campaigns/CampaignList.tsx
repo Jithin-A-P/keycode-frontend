@@ -1,40 +1,30 @@
-import { DataTable } from '@components';
-import { useAppDispatch } from '@store/store';
+import {CustomTable, HeaderWithButton } from '@components';
+import { Button } from '@mui/material';
+import { useGetCampaignsQuery } from '@services/api';
+import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
+import RoutePaths from '@routes/RoutesPath';
 
 // import { useLazyGetUsersQuery } from './store/api';
 
-const CampaignList = () => {
-  const dispatch = useAppDispatch();
+const CampaignList = (props) => {
 
-  // const navigate = useNavigate();
+  const { data } = useGetCampaignsQuery('charmander');
 
-  const columns: any = [
-    {
-      title: 'Catalog Id',
-      selector: (c) => c.id,
-      needClipBoard: true,
-      width: 30,
-    },
-    {
-      title: 'Name',
-      selector: () => 'Catalog Name',
-    },
-  ];
-
+  const navigate = useNavigate();
 
   return (
-    <>
-      <div className='text-xl font-semibold mb-[14px] text-jaguar'>Campaigns</div>
+    <div>
+      <HeaderWithButton
+        primaryButtonText='Create'
+        onClickPrimaryButton={() => navigate(RoutePaths.CREATE_CAMPAIGN)}
+        title='Campaigns'
+        primaryIcon={<AddIcon />}
+      />
       <div
         className='overflow-y-auto rounded-lg'
         style={{ maxHeight: 'calc(100vh - 281px)' }}
       >
-        <DataTable
-          columns={columns}
-          data={[]}
-          isLoading={false}
-          emptyRecordsMessage='No data found!'
-        />
       </div>
     </>
   );
