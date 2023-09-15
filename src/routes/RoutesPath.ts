@@ -14,6 +14,8 @@ const RoutePaths = {
   PLAYERS: '/player',
   SPIN: '/spin',
   FLAPPY: '/flappy',
+  CREATE_CAMPAIGN: '/campaigns/create',
+  SUBMIT_CAMPAIGN: '/admin/campaign/submit',
 };
 
 export default RoutePaths;

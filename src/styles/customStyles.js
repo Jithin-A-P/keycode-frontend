@@ -6,7 +6,7 @@ const zIndex = {
 };
 
 const fontFamily = {
-  sans: ['Inter', ...defaultTheme.fontFamily.sans],
+  sans: ['Syne', ...defaultTheme.fontFamily.sans],
 };
 
 module.exports = { fontFamily, zIndex };

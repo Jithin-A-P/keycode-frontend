@@ -1,45 +1,47 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable global-require */
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import ImageIcon from '@mui/icons-material/Image';
+import './styles.css'
 
-const items = [
-    { id: 1, name: 'Item 1', type: 'image' },
-    { id: 2, name: 'Item 2', type: 'video' },
-    { id: 3, name: 'Item 3', type: 'image' },
-    { id: 1, name: 'Item 1', type: 'image' },
-    { id: 2, name: 'Item 2', type: 'video' },
-    { id: 3, name: 'Item 3', type: 'image' },
-    { id: 1, name: 'Item 1', type: 'image' },
-    { id: 2, name: 'Item 2', type: 'video' },
-    { id: 3, name: 'Item 3', type: 'image' },
-];
+const CardGrid = (props) => {
 
-const CardGrid = (props) => (
-    <Grid container spacing={6}>
-        {items.map((item) => (
-            <Grid item xs={12} sm={4} md={2} key={item.id}>
-                <Card sx={{ maxWidth: 200 }}>
-                    <CardMedia
-                        sx={{ height: 140 }}
-                        style={{aspectRatio: 200 / 140}}
-                        image={require('../../assets/images/catalogs/images.jpeg')}
-                        title="abcd"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {item.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {item.type}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </Grid>
-        ))}
+    const {data, onClick, rowCount = 2, aspectRatio = 9 / 16} = props;
+  
+  const isYoutubeVideo = (url) =>
+    url.includes('youtube.com') || url.includes('youtu.be');
+
+  const isVideo = (url) => /\.(mp4|mpg|mpeg4|webp|avi|mkv)$/.test(url);
+  
+  return (
+    <Grid container spacing={5}>
+      {data.map((item) => (
+        <Grid item xs={12} sm={4} md={rowCount} key={item.id}>
+        <div onClick={() => onClick(item)}>
+          <Card sx={{ maxWidth: 200, borderRadius: 4, boxShadow: 4 }} className='card-styles'>
+            <CardMedia
+              component={(isVideo(item.url) && 'video') || 'image'}
+              style={{ aspectRatio }}
+              image={
+                item.url
+              }
+              title='Name'
+            />
+            {(isVideo(item.url) || isYoutubeVideo(item.url)) && <VideocamIcon className='card-icon'/> || <ImageIcon className='card-icon'/>}
+          </Card>
+          <p className='catalog-title'>
+            {item.name}
+          </p>
+        </div>
+        </Grid>
+      ))}
     </Grid>
-);
+  );
+};
 
 export default CardGrid;
