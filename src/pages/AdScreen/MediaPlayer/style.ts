@@ -2,18 +2,20 @@ export default {
     container:{
        height: '100vh',
        margin: 'auto',
-       backgroundColor: 'red',
+       backgroundColor: 'transparent',
     },
     topContainer:{
-      height: '80%',
-      backgroundColor: 'white'
+      height: '75%',
+      backgroundColor: 'transparent',
+      marginBottom: 24
     },
     bottomContainer:{
-      backgroundColor: 'black',
       height: '20%',
       display: 'flex',
-      justifyContent: 'space-between'
-      
+      justifyContent: 'space-between',
+      padding: 25,
+      borderRadius: 20,
+      background: 'linear-gradient(180deg, #7B20B1 0%, rgba(123, 32, 177, 0.00) 100%)'
     },
     bottomLeft:{
       width: '100%',

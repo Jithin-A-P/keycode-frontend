@@ -25,10 +25,10 @@ const MediaPlayer = (props) => {
   let interval;
 
   useEffect(() => {
-    setQRHeight(qrRef.current.clientHeight - 20);
+    setQRHeight(qrRef.current.clientHeight - 70);
     setVideoDimensions({
       width: videoRef.current.clientWidth,
-      height: videoRef.current.clientHeight,
+      height: videoRef.current.clientHeight - 48,
     });
   }, []);
 
@@ -102,7 +102,7 @@ const MediaPlayer = (props) => {
         {screen()}
         <div />
       </div>
-      <div style={styles.bottomContainer} ref={qrRef}>
+      <div style={styles.bottomContainer} className='backdrop-blur' ref={qrRef}>
         <div style={styles.bottomLeft}>
           {!isDisableFlip ? (
             <ReactCardFlip isFlipped={flip} flipDirection='vertical'>
