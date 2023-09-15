@@ -11,7 +11,7 @@ const Player = () => {
   const [pushToKioskQueueById, result] = usePushToKioskQueueByIdMutation();
   
   useEffect(() => {
-    socket.current = (io as any).connect('http://localhost:5050', {
+    socket.current = (io as any).connect('http://192.168.3.91:5050', {
       query: {
         // type: 'playerA',
         // screenId: 123,

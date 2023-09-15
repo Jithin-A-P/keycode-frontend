@@ -9,12 +9,20 @@ const GameController = () => {
   const [showButtons, setShowButtons] = useState(false);
   const [status, setStatus] = useState(null);
   const [player, setPlayer] = useState('');
+  const [gameAlreadyRunning, setGameAlreadyRunning] = useState(false);
 
   const [pushToKioskQueueById, result] = usePushToKioskRequestIdMutation();
 
+  const check = async () => {
+    const response: any = await pushToKioskQueueById({id: 1, type: "game_two_players", name: "tug_of_war"});
+    if (response.error) {
+      setGameAlreadyRunning(true)
+    }
+  }
+
   useEffect(() => {
-    pushToKioskQueueById({id: 123, type: "game_two_players", name: "tug_of_war"});
-    socket.current = (io as any).connect('http://localhost:5050', {
+    check();
+    socket.current = (io as any).connect('http://192.168.3.91:5050', {
       query: {
         // type: 'playerA',
         // screenId: 123,
@@ -43,6 +51,7 @@ const GameController = () => {
         else{
           setStatus(false)
         }
+        socket.current.disconnect();
       });
       // push to kiosk queue succeeded. now waiting for the ad to finish
       // once finished, show the controller
@@ -60,22 +69,27 @@ const GameController = () => {
     }
   }, [result.data])
   
-  return (
-    <div>
-      {status !== null ? status: 'Game runnning'}
-      {!showButtons ? (
-        'Waiting for game to start'
-      ) : (
-        <Button
-          handleButtonClick={() => {
-            socket.current.emit("button_click", {player});
-          }}
-        >
-          Player
-        </Button>
-      )}
-    </div>
-  );
+  
+  if (!gameAlreadyRunning) {
+    return (
+      <div>
+        {/* {status !== null ? status: 'Game runnning'} */}
+        {!showButtons ? (
+          'Waiting for game to start'
+        ) : (
+          <Button
+            handleButtonClick={() => {
+              socket.current.emit("button_click", {player});
+            }}
+          >
+            Player
+          </Button>
+        )}
+      </div>
+    );
+  } else {
+    return <div>Game already running</div>
+  }
 };
 
 export default GameController;

@@ -28,7 +28,7 @@ const mockData = [
 export type AdData = typeof mockData[0];
 
 const AdScreen = () => {
-  const [screenType, setScreenType] = useState('MEDIA_PLAYER');
+  const [screenType, setScreenType] = useState('2P');
   const { data, error, isLoading, refetch } = useGetKIOSKSchedulerQuery(12);
   const mediaType = data?.media  ? data.media.type : '';
   let screenTimer;
