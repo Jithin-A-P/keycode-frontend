@@ -11,7 +11,8 @@ const RouteLayout = () => {
 
   return (
     <>
-      {!isDashboard ? <TVLayout /> : <PrivateLayout />}
+      {/* {!isDashboard ? <TVLayout /> : <PrivateLayout />} */}
+      <PrivateLayout />
       <NotifierStack />
     </>
   );
