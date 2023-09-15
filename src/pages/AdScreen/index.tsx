@@ -33,27 +33,40 @@ const AdScreen = () => {
   const mediaType = data?.media  ? data.media.type : '';
   let screenTimer;
 
+  useEffect(()=>{
+    if(data?.type === 'game_two_players'){
+      setScreenType('2P');
+      clearTimeout(screenTimer)
+    }
+  },[data?.type])
+
 
   useEffect(() => {
     if (screenType === 'MEDIA_PLAYER' && (mediaType !== 'video' || mediaType !== 'youtube')) {
       screenTimer = setTimeout(refetch, 10_000);
     }
+    console.log(screenType, mediaType )
   }, [data, screenType]);
 
-  // const onGameEnd = () =>{
+  const onGameEnd = () =>{
+    setScreenType('SPIN_THE_WHEEL');
+  }
 
-  // }
+  const triggerAfterSpin=()=>{
+    setScreenType('MEDIA_PLAYER');
+    refetch()
+  }
 
   const renderScreen = useMemo(()=>{
     switch(screenType){
       case 'MEDIA_PLAYER':
         return <MediaPlayer data={data} mediaType={mediaType} onVideoend={refetch} />;
       case 'SPIN_THE_WHEEL':
-        return <SpinThewheel />;
+        return <SpinThewheel triggerAfterSpin={triggerAfterSpin}/>;
       case '1P':
         return <Flappy />;
       case '2P':
-        return <TugOfWar />;
+        return <TugOfWar onGameEnd={onGameEnd}/>;
       default:
         return <div />;
     }

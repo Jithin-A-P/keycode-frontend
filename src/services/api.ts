@@ -50,6 +50,17 @@ export const api = createApi({
     getCampaignById: builder.query({
       query: (id) => `/campaigns/${id}`,
     }),
+    postAnnouncement: builder.mutation({
+      query: (body) => ({
+        url: '/medias',
+        method: 'PATCH',
+        body
+      }),
+      transformResponse: (data: any) => data?.data
+    }),
+    getStartSpinTrigger: builder.query({
+      query: () => `kiosks/1/spin`,
+    }),
   }),
 });
 
@@ -66,6 +77,8 @@ export const {
   useLazyGetKIOSKSchedulerQuery,
   useGetKiosksQuery,
   useCreateCampaignMutation,
+  usePostAnnouncementMutation,
+  useLazyGetStartSpinTriggerQuery
 } = api;
 
 export default api;
