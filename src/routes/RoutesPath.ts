@@ -4,7 +4,8 @@ const RoutePaths = {
   CATALOGS: '/catalogs',
   CAMPAIGNS: '/campaigns',
   TVADSCREEN: '/tvadscreen',
-  GAMES: '/games'
+  GAMES: '/games',
+  PLAYERS: '/player'
 };
 
 export default RoutePaths;
