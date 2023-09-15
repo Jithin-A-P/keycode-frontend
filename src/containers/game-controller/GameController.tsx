@@ -68,7 +68,7 @@ const GameController = () => {
         'Waiting for game to start'
       ) : (
         <button type='button'
-          handleButtonClick={() => {
+          onClick={() => {
             socket.current.emit("button_click", {player});
           }}
         >

@@ -99,7 +99,7 @@ const MobileLanding = () => {
         type='button'
           className='see-all'
           onClick={() => {
-            navigate('url');
+            // navigate('url');
           }}
         >
           See All
@@ -108,12 +108,12 @@ const MobileLanding = () => {
       <div className='scrolling-wrapper'>
         <img
           className='game-card'
-          src={require(`../../assets/images/cola-ad.png`)}
+          src={require(`../../assets/images/games/tug-of-war.png`)}
           alt=''
         />
         <img
           className='game-card'
-          src={require(`../../assets/images/cola-ad.png`)}
+          src={require(`../../assets/images/games/flappy-bird.png`)}
           alt=''
         />
       </div>
