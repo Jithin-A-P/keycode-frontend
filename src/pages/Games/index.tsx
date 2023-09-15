@@ -7,7 +7,7 @@ const Games = () =>{
     const socket = useRef(null);
     const [ropeYState, setRopeYState] = useState(0);
     useEffect(() => {
-      socket.current = (io as any).connect('http://localhost:5050', {
+      socket.current = (io as any).connect('http://192.168.3.91:5050', {
         query: {
           type: 'screen',
           screenId: 123
@@ -15,13 +15,13 @@ const Games = () =>{
       });
       socket.current.on("connect", () => {
         console.log("connected to Game tUg of war");
-        console.log(socket.current.id); // x8WIv7-mJelg7on_ALbx
-        socket.current.emit("game_started");
+        console.log(socket.current.id);
+        socket.current.emit("game_started", 1);
       });
       socket.current.on('button_click_data', (data)=> {
         console.log("playing data", data, ropeYState);
         if(ropeYState === 5 || ropeYState === -5){
-          socket.current.emit("game_ended", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "123"});
+          // 
         }
         else{
         if(data.player === 'playerA'){
@@ -36,7 +36,7 @@ const Games = () =>{
 
     useEffect(() => {
       if(ropeYState === 5 || ropeYState === -5){
-        socket.current.emit("game_ended", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "123"});
+        socket.current.emit("game_end_request", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "1"});
       }
     }, [ropeYState])
   
