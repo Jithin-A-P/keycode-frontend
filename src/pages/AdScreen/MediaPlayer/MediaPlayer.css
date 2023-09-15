@@ -1,0 +1,7 @@
+.playAndWin {
+  background: linear-gradient(93deg, #f6de11 14.75%, #efb865 91.28%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 100px !important;
+}

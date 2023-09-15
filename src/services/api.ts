@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://192.168.3.91:5000/api' }),
@@ -15,9 +14,33 @@ export const api = createApi({
     getKiosks: builder.query({
       query: () => `/kiosks`,
     }),
+    getCampaignById: builder.query({
+      query: (id) => `pokemon/${id}`,
+    }),
+
+    getKioskById: builder.query({
+      query: (id) => `kiosks/${id}`,
+    }),
+    getKioskQueueById: builder.query({
+      query: (id) => `kiosks/${id}/queue`,
+    }),
+    pushToKioskQueueById: builder.mutation({
+      query: ({ id, ...body }) => ({
+        url: `kiosks/${id}/queue/add`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    pushToKioskRequestId: builder.mutation({
+      query: ({ id, ...body }) => ({
+        url: `kiosks/${id}/queue/request`,
+        method: 'POST',
+        body,
+      }),
+    }),
     getKIOSKScheduler: builder.query({
       query: () => `/kiosks/1/queue/next`,
-      transformResponse: (data: any) => data?.data
+      transformResponse: (data: any) => data?.data,
     }),
     postAnnouncement: builder.mutation({
       query: (body) => ({
@@ -28,8 +51,21 @@ export const api = createApi({
       transformResponse: (data: any) => data?.data
     })
   }),
-})
+});
 
-export const { useGetCatalogsQuery, useGetCampaignsQuery, useGetKIOSKSchedulerQuery, useGetKiosksQuery, usePostAnnouncementMutation } = api;
+export const {
+  useGetCatalogsQuery,
+  useLazyGetCatalogsQuery,
+  useGetCampaignsQuery,
+  useGetCampaignByIdQuery,
+  useGetKioskByIdQuery,
+  useGetKioskQueueByIdQuery,
+  usePushToKioskQueueByIdMutation,
+  usePushToKioskRequestIdMutation,
+  useGetKIOSKSchedulerQuery,
+  useLazyGetKIOSKSchedulerQuery,
+  useGetKiosksQuery,
+  usePostAnnouncementMutation
+} = api;
 
 export default api;

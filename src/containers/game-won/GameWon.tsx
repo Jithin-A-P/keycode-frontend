@@ -1,4 +1,3 @@
-import { Button, Typography } from '@mui/material';
 import './styles.css';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useState } from 'react';
@@ -19,18 +18,16 @@ const GameWon = () => {
   return (
     <div className='game-won'>
       <img src='assets/you-win.png' alt='You win' className='you-win-img' />
-      <ConfettiExplosion height={window.innerHeight * 0.5} force={2.0} />
-      <Typography className='you-win-text'>Congragulations</Typography>
+      <ConfettiExplosion height={window.innerHeight * 0.8} force={2.0} />
+      <p className='you-win-text'>Congragulations</p>
       {spinStatus === SpinStatus.NOT_SPINNED && (
         <>
-          <Typography className='spin-wheel-text'>
+          <p className='spin-wheel-text'>
             Spin the wheel to get rewards
-          </Typography>
-          <div className='ripple'>
-            <Button onClick={onButtonClick} className='reward-button'>
-              Spin
-            </Button>
-          </div>
+          </p>
+          <button type='button' onClick={onButtonClick} className='reward-button'>
+            Spin
+          </button>
         </>
       )}
       {spinStatus === SpinStatus.SPINNED && <div>Coupon</div>}
