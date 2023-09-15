@@ -4,12 +4,27 @@
     align-items: center;
 }
 
+.ripple {
+    height: 120px;
+    width: 120px;
+    background-color: #a5d5fa;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+}
+
 .reward-button {
     background-color: #3da6fc;
     color: #ffffff;
-    padding: 20px 30px;
-    border-radius: 20px;
-    margin-top: 100px;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    padding: 20px;
+    font-family: 'Lilita One', cursive;
+    font-size: 16pt;
+    animation: expand-contract 2s infinite;
 }
 
 .you-win-img {
@@ -17,6 +32,16 @@
     -moz-animation: scale 0.5s;
     -webkit-animation: scale 0.5s;
     -o-animation: scale 0.5s;
+}
+
+.you-win-text {
+    font-family: 'Lilita One', cursive;
+    font-size: 22pt;
+}
+
+.spin-wheel-text {
+    font-family: 'Lilita One', cursive;
+    font-size: 18pt;
 }
 
 @keyframes scale {
@@ -28,3 +53,15 @@
         width: 1.0;
     }
 }
+
+@keyframes expand-contract {
+    0% {
+        scale: 0.9;
+    }
+    50% {
+        scale: 1.0;
+    }
+    100% {
+        scale: 0.9;
+    }
+} 

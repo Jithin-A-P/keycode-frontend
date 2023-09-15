@@ -18,12 +18,12 @@
     font-family: 'Lilita One', cursive;
     font-size: 26pt;
     color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
+}
+
+.game-button:focus {
+    background-color: #a0c5c5;
 }
 
 .game-button:active {
-    background-color:#008080;
+    background-color: #a0c5c5;
 }
