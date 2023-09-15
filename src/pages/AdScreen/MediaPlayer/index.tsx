@@ -86,9 +86,10 @@ const MediaPlayer = (props) => {
     if (mediaType === 'announcement') {
       return (
         <div style={styles.announcementBanner}>
+          <div style={{ height: '100%'}}>
           <div style={styles.announcementText}>
             {data?.media?.title ?? 'Happy birthday'}
-          </div>
+          </div></div>
         </div>
       );
     }
