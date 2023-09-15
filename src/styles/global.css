@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap");
+
+:root {
+  --expanded-sidenav-width: 250px;
+  --collapsed-sidenav-width: 84px;
+  --sidenav-animation-duration: 100ms;
+}
+
+/* To apply accent color to stroke color of path elements inside an SVG */
+.path-stroke-accent path {
+  @apply text-jaguar stroke-current;
+}
+
+.path-fill-accent path {
+  @apply text-jaguar fill-current;
+}
+
+.page {
+  @apply w-full h-[calc(100vh-89px)] px-[40px] overflow-y-auto;
+}
+textarea::placeholder,
+input::placeholder {
+  @apply text-gray-400;
+  opacity: 0.4;
+}
+
+.h-page {
+  /* top bar height (89px) + vertical padding (24px for top and bottom) = 137px */
+  @apply h-[calc(100vh-137px)];
+}
+
+.disabled-button {
+  @apply pointer-events-none opacity-60;
+}
+
+body {
+  font-family: "Open Sans";
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2828299f;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #282829;
+}
+
+@keyframes shining {
+  0% {
+    background-position: calc(-50px);
+  }
+  50% {
+    background-position: 50px;
+  }
+  100% {
+    background-position: 50px;
+  }
+}
+
+.prevent-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

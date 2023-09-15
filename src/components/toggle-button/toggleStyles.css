@@ -1,0 +1,10 @@
+.slider-button .switch input:checked + .slider::before {
+  transform: translateX(11px);
+  background-color: white;
+}
+.slider-button .switch input:checked + .slider {
+  background-color: #44be63;
+}
+.slider-button .switch input:disabled + .slider {
+  cursor: not-allowed;
+}

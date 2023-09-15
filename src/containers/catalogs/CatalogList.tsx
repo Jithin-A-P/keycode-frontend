@@ -1,0 +1,36 @@
+import { DataTable } from '@components';
+
+const CatalogList = () => {
+  const columns: any = [
+    {
+      title: 'Catalog Id',
+      selector: (c) => c.id,
+      needClipBoard: true,
+      width: 30,
+    },
+    {
+      title: 'Name',
+      selector: () => 'Catalog Name',
+    },
+  ];
+
+
+  return (
+    <>
+      <div className='text-xl font-semibold mb-[14px] text-jaguar'>Catalogs</div>
+      <div
+        className='overflow-y-auto rounded-lg'
+        style={{ maxHeight: 'calc(100vh - 281px)' }}
+      >
+        <DataTable
+          columns={columns}
+          data={[]}
+          isLoading={false}
+          emptyRecordsMessage='No data found!'
+        />
+      </div>
+    </>
+  );
+};
+
+export default CatalogList;

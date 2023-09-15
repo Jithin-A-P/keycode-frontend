@@ -1,0 +1,152 @@
+name: Static Hosting
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Choose env
+        options:
+          - dev
+          - stg
+          - prod
+  push:
+    paths-ignore:
+      - "docs/**"
+      - "**.md"
+    branches:
+      - dev
+
+env:
+  SERVICE_NAME: "admin-website"
+
+jobs:
+  prepare-env:
+    name: Prepare Env
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      AWS_ACCESS_KEY_ID: ${{ steps.vars.outputs.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ steps.vars.outputs.AWS_SECRET_ACCESS_KEY }}
+      DISTRIBUTION_ID: ${{ steps.vars.outputs.DISTRIBUTION_ID }}
+      PROJECT_PREFIX: ${{ steps.vars.outputs.PROJECT_PREFIX }}
+      AWS_REGION: ${{ steps.set_env.outputs.AWS_REGION }}
+      ENVIRONMENT_BUCKET: ${{ steps.set_env.outputs.ENVIRONMENT_BUCKET }}
+      STATIC_HOSTING_BUCKET: ${{ steps.set_env.outputs.STATIC_HOSTING_BUCKET }}
+    steps:
+      - id: vars
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          ENV=${{ github.event.inputs.environment }}
+          echo $BRANCH
+
+          if [ -z "$ENV" ]
+          then
+            case $BRANCH in
+              "dev")
+                ENV="dev"
+                ;;
+              "stg")
+                ENV="stg"
+                ;;
+              "main")
+                ENV="prod"
+                ;;
+              *)
+                echo "ENV not configured" && exit 1
+                ;;
+            esac
+          fi
+
+          if [ $ENV == 'prod' ] 
+          then
+            echo "AWS_ACCESS_KEY_ID=PRD_AWS_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+            echo "AWS_SECRET_ACCESS_KEY=PRD_AWS_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
+            echo "DISTRIBUTION_ID=PRD_DISTRIBUTION_ID" >> $GITHUB_OUTPUT
+            echo "PROJECT_PREFIX=prsm-prd-sg" >> $GITHUB_OUTPUT
+          elif [ $ENV == 'stg' ]
+          then
+            echo "AWS_ACCESS_KEY_ID=STG_AWS_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+            echo "AWS_SECRET_ACCESS_KEY=STG_AWS_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
+            echo "DISTRIBUTION_ID=STG_DISTRIBUTION_ID" >> $GITHUB_OUTPUT
+            echo "PROJECT_PREFIX=prsm-stg-sg" >> $GITHUB_OUTPUT
+          elif [ $ENV == 'dev' ]
+          then
+            echo "AWS_ACCESS_KEY_ID=DEV_AWS_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+            echo "AWS_SECRET_ACCESS_KEY=DEV_AWS_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
+            echo "DISTRIBUTION_ID=DEV_DISTRIBUTION_ID" >> $GITHUB_OUTPUT
+            echo "PROJECT_PREFIX=prsm-dev-sg" >> $GITHUB_OUTPUT
+          else
+            echo "Branch not configured!"
+            exit 1
+          fi
+      - name: set variables
+        id: set_env
+        run: |
+          PROJECT_PREFIX=${{ steps.vars.outputs.PROJECT_PREFIX }}
+          ENVIRONMENT_BUCKET=$PROJECT_PREFIX-s3-environment
+          STATIC_HOSTING_BUCKET=$PROJECT_PREFIX-$SERVICE_NAME
+          echo "PROJECT_PREFIX=$PROJECT_PREFIX"  >> $GITHUB_OUTPUT
+          echo "ENVIRONMENT_BUCKET=$ENVIRONMENT_BUCKET"  >> $GITHUB_OUTPUT
+          echo "AWS_REGION=ap-southeast-1"  >> $GITHUB_OUTPUT
+          echo "STATIC_HOSTING_BUCKET=$STATIC_HOSTING_BUCKET"  >> $GITHUB_OUTPUT
+          echo ":seedling: Branch:${GITHUB_REF#refs/heads/}" >> $GITHUB_STEP_SUMMARY
+
+  # Building and Pushing to S3
+  static-host:
+    name: Build and Push to S3
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: prepare-env
+    env:
+      AWS_ACCESS_KEY_ID: ${{needs.prepare-env.outputs.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{needs.prepare-env.outputs.AWS_SECRET_ACCESS_KEY}}
+      AWS_REGION: ${{needs.prepare-env.outputs.AWS_REGION}}
+      PROJECT_PREFIX: ${{needs.prepare-env.outputs.PROJECT_PREFIX}}
+      ECR_REPOSITORY: ${{needs.prepare-env.outputs.ECR_REPOSITORY}}
+      ENVIRONMENT_BUCKET: ${{needs.prepare-env.outputs.ENVIRONMENT_BUCKET}}
+      STATIC_HOSTING_BUCKET: ${{needs.prepare-env.outputs.STATIC_HOSTING_BUCKET}}
+      DISTRIBUTION_ID: ${{needs.prepare-env.outputs.DISTRIBUTION_ID}}
+
+    outputs:
+      ECR_REPO: ${{ steps.build.outputs.ECR_REPO }}
+      IMAGE: ${{ steps.image.outputs.IMAGE }}
+
+    steps:
+      - name: "Checkout repository on : ${{ github.REF }}"
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          aws-access-key-id: ${{ secrets[env.AWS_ACCESS_KEY_ID] }}
+          aws-secret-access-key: ${{ secrets[env.AWS_SECRET_ACCESS_KEY] }}
+          aws-region: ${{ env.AWS_REGION }}
+          mask-aws-account-id: "no"
+
+      - name: Sync S3 environment
+        id: sync-env
+        run: |
+          aws s3 cp s3://${ENVIRONMENT_BUCKET}/admin-website/.env ./.env
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Run Npm Command
+        run: |
+          npm i
+          npm run build
+
+      - name: Sync S3 files
+        id: sync-js
+        run: |
+          aws s3 cp ./build/ s3://${STATIC_HOSTING_BUCKET}/ --recursive
+
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2.4
+        env:
+          DISTRIBUTION: ${{ secrets[env.DISTRIBUTION_ID] }}
+          PATHS: "/*"
+          AWS_REGION: ${{ env.AWS_REGION }}
