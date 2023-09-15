@@ -35,7 +35,7 @@ const AdScreen = () => {
 
 
   useEffect(() => {
-    if (screenType === 'MEDIA_PLAYER' && (mediaType === 'image' || data?.type === 'advertise_here')) {
+    if (screenType === 'MEDIA_PLAYER' && (mediaType !== 'video' || mediaType !== 'youtube')) {
       screenTimer = setTimeout(refetch, 10_000);
     }
   }, [data, screenType]);

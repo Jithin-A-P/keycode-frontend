@@ -53,20 +53,32 @@ const MediaPlayer = (props) => {
 
   const mediaUrl = data?.media?.url;
 
+  const imageStyles = {
+    width: '100%',
+    height: '100%',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  };
+
   const screen = () => {
     if (data && data?.type === 'advertise_here') {
-      return <p>Put your ads here</p>;
+      return (
+        <div
+          style={{
+            ...imageStyles,
+            backgroundPositionY: -300,
+            backgroundImage: `url(/scanAndWin.png)`,
+          }}
+        />
+      );
     }
     if (mediaType === 'image') {
       return (
         <div
           style={{
             backgroundImage: `url(${mediaUrl})`,
-            width: '100%',
-            height: '100%',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
+            ...imageStyles,
           }}
         />
       );
