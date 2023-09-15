@@ -3,6 +3,8 @@ const RoutePaths = {
   HOME: '/',
   CATALOGS: '/catalogs',
   CAMPAIGNS: '/campaigns',
+  TVADSCREEN: '/tvadscreen',
+  GAMES: '/games'
 };
 
 export default RoutePaths;
