@@ -1,4 +1,3 @@
-import { Button, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import './styles.css';
 
@@ -11,12 +10,12 @@ const GameController = () => {
 
   return (
     <div className='game-controller'>
-      <Typography variant='h3' className='game-header'>
+      <p className='game-header'>
         Player {playerId}
-      </Typography>
-      <Button className='game-button' onClick={onButtonClick}>
+      </p>
+      <button type='button' className='game-button' onClick={onButtonClick}>
         Tap Here
-      </Button>
+      </button>
     </div>
   );
 };

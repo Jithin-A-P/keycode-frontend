@@ -95,7 +95,15 @@ const MobileLanding = () => {
       <br />
       <div className='games-header'>
         <h2 className='available-games'>AVAILABLE GAMES</h2>
-        <h2 className='see-all'>See All</h2>
+        <button
+        type='button'
+          className='see-all'
+          onClick={() => {
+            navigate('url');
+          }}
+        >
+          See All
+        </button>
       </div>
       <div className='scrolling-wrapper'>
         <img
