@@ -56,6 +56,7 @@ export const {
   usePushToKioskRequestIdMutation,
   useGetKIOSKSchedulerQuery,
   useLazyGetKIOSKSchedulerQuery,
+  useGetKiosksQuery,
 } = api;
 
 export default api;
