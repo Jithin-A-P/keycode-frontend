@@ -5,3 +5,9 @@
     justify-content: center;
     min-height: 70vh;
 }
+
+.game-lost-text {
+    font-family: 'Lilita One', cursive;
+    font-size: 16pt;
+    margin-top: 50px;
+}
