@@ -20,6 +20,13 @@
     font-size: 14pt;
 }
 
+.instant-upload {
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: '12px';
+}
+
 .see-all {
     color: white;
     font-family: 'Syne', sans-serif;
