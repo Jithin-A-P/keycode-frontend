@@ -7,6 +7,7 @@
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Accordion, Button, AccordionSummary, AccordionDetails } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
@@ -45,9 +46,10 @@ const MobileLanding = () => {
          <AccordionDetails>
          <Button variant='text' onClick={() => navigate(RoutePaths.MOBILE_YOUTUBE_LINK)} >Youtube links</Button>
           <div/>
-          <Button variant='text' onClick={() => navigate(RoutePaths.MOBILE_ANNOUNCEMENT)} >Anouncements</Button>
+          <Button variant='text' onClick={() => navigate(RoutePaths.MOBILE_ANNOUNCEMENT)} >Announcements</Button>
           <div/>
           <Button variant='text' >Insta reels</Button>
+          <Chip size="small" label="coming soon..." color="primary" variant="outlined" />
          </AccordionDetails>
         </Accordion>
         </div>
