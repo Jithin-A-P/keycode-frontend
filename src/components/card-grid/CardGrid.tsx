@@ -1,44 +1,39 @@
-/* eslint-disable global-require */
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
-
-enum CatalogType {
-  youtube_shorts = 'Youtube Shorts',
-  image = 'Image',
-  video = 'Video',
-}
+import VideocamIcon from '@mui/icons-material/Videocam';
+import ImageIcon from '@mui/icons-material/Image';
+import './styles.css'
 
 const CardGrid = ({ data }) => {
+  
+  const isYoutubeVideo = (url) =>
+    url.includes('youtube.com') || url.includes('youtu.be');
+
   const isVideo = (url) => /\.(mp4|mpg|mpeg4|webp|avi|mkv)$/.test(url);
-
-  const isYoutubeVideo = (url) => url.includes('youtube.com') || url.includes('youtu.be')
-
+  
   const getPreviewId = (url) => url.split('?')[0].split('/').pop();
 
   return (
-    <Grid container spacing={6}>
+    <Grid container spacing={5}>
       {data.map((item) => (
         <Grid item xs={12} sm={4} md={2} key={item.id}>
-          <Card sx={{ maxWidth: 200 }}>
+          <Card sx={{ maxWidth: 200, borderRadius: 4, boxShadow: 4 }} className='card-styles'>
             <CardMedia
-              sx={{ height: 140 }}
               component={(isVideo(item.url) && 'video') || 'image'}
-              style={{ aspectRatio: 200 / 140 }}
-              image={isYoutubeVideo(item.url) ? `https://img.youtube.com/vi/${getPreviewId(item.url)}/0.jpg`: item.url}
+              style={{ aspectRatio: 9 / 16 }}
+              image={
+                isYoutubeVideo(item.url)
+                  ? `https://img.youtube.com/vi/${getPreviewId(item.url)}/0.jpg`
+                  : item.url
+              }
               title='Name'
             />
-            <CardContent>
-              <Typography gutterBottom variant='h5' component='div'>
-                {item.name}
-              </Typography>
-              <Typography variant='body2' color='text.secondary'>
-                {CatalogType[item.type]}
-              </Typography>
-            </CardContent>
+            {(isVideo(item.url) || isYoutubeVideo(item.url)) && <VideocamIcon className='card-icon'/> || <ImageIcon className='card-icon'/>}
           </Card>
+          <p className='catalog-title'>
+            {item.name}
+          </p>
         </Grid>
       ))}
     </Grid>
