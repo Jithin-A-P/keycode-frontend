@@ -5,7 +5,11 @@ const RoutePaths = {
   CAMPAIGNS: '/campaigns',
   MOBILE_HOME: '/screens/:id/:uid',
   MOBILE_YOUTUBE_LINK: '/screens/:id/:uid/youtube-link',
-  MOBILE_ANNOUNCEMENT: '/screens/:id/:uid/announcement'
+  MOBILE_ANNOUNCEMENT: '/screens/:id/:uid/announcement',
+  TVADSCREEN: '/tvadscreen',
+  GAMES: '/games',
+  PLAYERS: '/player',
+  SPIN: '/spin'
 };
 
 export default RoutePaths;
