@@ -1,20 +1,16 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable global-require */
 import {
-  Button,
-  IconButton,
-  InputAdornment,
+  CardMedia,
   MenuItem,
-  OutlinedInput,
   TextField,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import RoutePaths from '@routes/RoutesPath';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import TodayIcon from '@mui/icons-material/Today';
+import Select from '@mui/material/Select';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -27,7 +23,7 @@ import { useGetCatalogsQuery } from '@services/api';
 const CreateCampaign = () => {
   const [type, setType] = useState('Time slot');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCampaign, setSelectedCampaign] = useState({});
+  const [selectedCampaign, setSelectedCampaign] = useState({ url: null });
   const [frequency, setFrequency] = useState('');
   const [campaignName, setCampaignName] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -71,6 +67,8 @@ const CreateCampaign = () => {
   const onChangeEndDate = (event) => {
     setEndDate(event.target.value);
   };
+
+  const isVideo = (url) => /\.(mp4|mpg|mpeg4|webp|avi|mkv)$/.test(url);
 
   return (
     <div>
@@ -137,27 +135,40 @@ const CreateCampaign = () => {
       </div>
       <div className={classNames.row}>
         <div className={classNames.label}>Catalog</div>
-        <div
-          style={{
-            width: '250px',
-            height: '200px',
-            borderWidth: 1,
-            borderRadius: 8,
-            alignItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-          onClick={() => openModal()}
-        >
-          <ImageIcon
-            style={{ width: '200px', height: '100px' }}
-            color='disabled'
-          />
-          <span style={{ fontSize: '14px', color: 'grey' }}>
-            Select from catalogs
-          </span>
-        </div>
+        {selectedCampaign.url === null ? (
+          <div
+            style={{
+              width: '250px',
+              height: '200px',
+              borderWidth: 1,
+              borderRadius: 8,
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            onClick={() => openModal()}
+          >
+            <ImageIcon
+              style={{ width: '200px', height: '100px' }}
+              color='disabled'
+            />
+            <span style={{ fontSize: '14px', color: 'grey' }}>
+              Select from catalogs
+            </span>
+          </div>
+        ) : (
+          <div
+            onClick={() => openModal()}
+            style={{ height: '200px', width: '250px', borderRadius: 8 }}
+          >
+            <CardMedia
+              sx={{ height: '200px', width: '100%', borderRadius: 8 }}
+              component={isVideo(selectedCampaign.url) ? 'video' : 'image'}
+              image={selectedCampaign.url}
+            />
+          </div>
+        )}
       </div>
       <Modal
         open={isModalOpen}
@@ -184,10 +195,9 @@ const CreateCampaign = () => {
         >
           <CardGrid
             data={catalogs}
-            // cardStyle={{ width: 150, height: 150 }}
-            // cardMediaStyle={{ height: 80, minWidth: 150 }}
-            // md={3}
-            // onClick={onSelectCampaign}
+            rowCount={3}
+            onClick={onSelectCampaign}
+            aspectRatio={20/24}
           />
         </div>
       </Modal>

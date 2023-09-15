@@ -37,7 +37,7 @@ const MobileAnnouncementPage = () => {
       <TextField
         multiline
         rows={4}
-        maxRows={Infinity}
+        maxRows={4}
         onChange={onChangeText}
         className='w-full'
         id='fullWidth'

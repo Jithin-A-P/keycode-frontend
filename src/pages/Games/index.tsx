@@ -3,30 +3,43 @@ import { Button } from '@components';
 import { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 
-const Games = () => {
-  const socket = useRef(null);
-  const [ropeYState, setRopeYState] = useState(0);
-  useEffect(() => {
-    socket.current = (io as any).connect('http://192.168.3.186:5050', {
-      query: {
-        type: 'screen',
-        screenId: 123,
-      },
-    });
-    socket.current.on('connect', () => {
-      console.log('connected to Game tUg of war');
-      console.log(socket.current.id); // x8WIv7-mJelg7on_ALbx
-    });
-    socket.current.on('button_click_data', (data) => {
-      console.log('playing data', data);
-      if (data.player === 'playerA') {
-        setRopeYState((prevState) => prevState - 1);
+const Games = () =>{
+    const socket = useRef(null);
+    const [ropeYState, setRopeYState] = useState(0);
+    useEffect(() => {
+      socket.current = (io as any).connect('http://localhost:5050', {
+        query: {
+          type: 'screen',
+          screenId: 123
+        },
+      });
+      socket.current.on("connect", () => {
+        console.log("connected to Game tUg of war");
+        console.log(socket.current.id); // x8WIv7-mJelg7on_ALbx
+        socket.current.emit("game_started");
+      });
+      socket.current.on('button_click_data', (data)=> {
+        console.log("playing data", data, ropeYState);
+        if(ropeYState === 5 || ropeYState === -5){
+          socket.current.emit("game_ended", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "123"});
+        }
+        else{
+        if(data.player === 'playerA'){
+         setRopeYState((prevState) => prevState - 1);
+        }
+        if(data.player === 'playerB'){
+          setRopeYState((prevState) => prevState + 1);
+         }
+        }
+      });
+    }, []);
+
+    useEffect(() => {
+      if(ropeYState === 5 || ropeYState === -5){
+        socket.current.emit("game_ended", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "123"});
       }
-      if (data.player === 'playerB') {
-        setRopeYState((prevState) => prevState + 1);
-      }
-    });
-  }, []);
+    }, [ropeYState])
+  
 
   return (
     <div
@@ -64,11 +77,11 @@ const Games = () => {
           alt='asd'
           className='transition-all'
         />
-        {/* <Button
+        <Button
         className='absolute'
         handleButtonClick={() => {
           setRopeYState(ropeYState - 1);
-          socket.current.emit('game_started', 'someRandomId');
+          // socket.current.emit('game_started', 'someRandomId');
         }}
       >
         clik1
@@ -81,7 +94,7 @@ const Games = () => {
         }}
       >
         clik2
-      </Button> */}
+      </Button>
       </div>
     </div>
   );

@@ -40,9 +40,12 @@ const AdScreen = () => {
     }
   }, [data, screenType]);
 
+  // const onGameEnd = () =>{
 
-  const renderScreen = useMemo(() => {
-    switch (screenType) {
+  // }
+
+  const renderScreen = useMemo(()=>{
+    switch(screenType){
       case 'MEDIA_PLAYER':
         return <MediaPlayer data={data} mediaType={mediaType} onVideoend={refetch} />;
       case 'SPIN_THE_WHEEL':

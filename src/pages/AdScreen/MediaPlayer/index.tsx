@@ -4,15 +4,14 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import ReactCardFlip from 'react-card-flip';
 import styles from './style';
+import './MediaPlayer.css';
 
-const imageUrl =
-  'https://developers.google.com/static/admob/images/full-screen/image01.png';
-const videoId = 'dFg8Nu2X5Mo';
+const qrLink = 'Hello';
+
 const MediaPlayer = (props) => {
   const { mediaType, onVideoend, data } = props;
 
   const [qrHeight, setQRHeight] = useState(100);
-  const [qrLink, setQrLink] = useState('Hello');
   const [videoDimensions, setVideoDimensions] = useState({
     width: 100,
     height: 100,
@@ -25,10 +24,10 @@ const MediaPlayer = (props) => {
   let interval;
 
   useEffect(() => {
-    setQRHeight(qrRef.current.clientHeight - 20);
+    setQRHeight(qrRef.current.clientHeight - 90);
     setVideoDimensions({
       width: videoRef.current.clientWidth,
-      height: videoRef.current.clientHeight,
+      height: videoRef.current.clientHeight - 48,
     });
   }, []);
 
@@ -62,12 +61,13 @@ const MediaPlayer = (props) => {
   };
 
   const screen = () => {
+    if (!data) return <div />;
     if (data && data?.type === 'advertise_here') {
       return (
         <div
           style={{
             ...imageStyles,
-            backgroundPositionY: -300,
+            backgroundPositionY: -400,
             backgroundImage: `url(/scanAndWin.png)`,
           }}
         />
@@ -81,6 +81,16 @@ const MediaPlayer = (props) => {
             ...imageStyles,
           }}
         />
+      );
+    }
+    if (mediaType === 'announcement') {
+      return (
+        <div style={styles.announcementBanner}>
+          <div style={{ height: '100%'}}>
+          <div style={styles.announcementText}>
+            {data?.media?.title ?? 'Happy birthday'}
+          </div></div>
+        </div>
       );
     }
     return (
@@ -102,19 +112,29 @@ const MediaPlayer = (props) => {
         {screen()}
         <div />
       </div>
-      <div style={styles.bottomContainer} ref={qrRef}>
+      <div style={styles.bottomContainer} className='backdrop-blur' ref={qrRef}>
         <div style={styles.bottomLeft}>
           {!isDisableFlip ? (
             <ReactCardFlip isFlipped={flip} flipDirection='vertical'>
-              <div style={styles.text}>Play And Win</div>
-              <div style={styles.text}>Instant Uploads</div>
+              <div className='playAndWin font-semibold' style={styles.text}>
+                PLAY & WIN
+              </div>
+              <div style={styles.text}>
+                Instant Uploads
+              </div>
             </ReactCardFlip>
           ) : (
-            <div style={styles.text}>Waiting for player 2</div>
+            <div className='flex mr-10'>
+              <p style={styles.text}>Waiting for next player...</p>
+              <img src='/gamepad.png' alt='' />
+            </div>
           )}
         </div>
         <div style={styles.bottomRight}>
-          <QRCode style={styles.qrCode} value={qrLink} size={qrHeight} />
+          <p className='text-[#F9F0FF] mb-1 text-xl'>Scan to play</p>
+          <div style={styles.qrContainer}>
+            <QRCode style={styles.qrCode} value={qrLink} size={qrHeight} />
+          </div>
         </div>
       </div>
     </div>

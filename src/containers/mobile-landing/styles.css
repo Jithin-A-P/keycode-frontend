@@ -1,0 +1,23 @@
+.mobile-head {
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 32pt;
+}
+
+.games-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.available-games {
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+}
+
+.games-carousel {
+    border-radius: 30px;
+    overflow: hidden;
+}
