@@ -1,8 +1,8 @@
 import { Button } from '@components';
-import { Card, Dialog, DialogContent } from '@mui/material';
+import { Card, Dialog } from '@mui/material';
 import { useState } from 'react';
 import { Wheel, WheelDataType } from 'react-custom-roulette';
-import FrowningFace from '../assets/icons/Frowning';
+import FrowningFace from '../../assets/icons/Frowning';
 
 const multi = 0.9;
 const offY = 130;
