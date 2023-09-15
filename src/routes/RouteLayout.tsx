@@ -1,10 +1,12 @@
 import NotifierStack from '@containers/notification/Notification';
 
 import PrivateLayout from './PrivateLayout';
+import MobileLayout from './MobileLayout';
 
 const RouteLayout = () => (
     <>
-      <PrivateLayout />
+      <MobileLayout />
+      {/* <PrivateLayout /> */}
       <NotifierStack />
     </>
   );
