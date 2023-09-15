@@ -32,12 +32,12 @@ const PrivateLayout = () => {
         <div className='page mt-[80px]'>
           <Suspense>
             <Routes>
+              <Route path={RoutePaths.CATALOGS} element={<CatalogPage />} />
+              <Route path={RoutePaths.CAMPAIGNS} element={<CampaignPage />} />
               <Route
                 path={RoutePaths.HOME}
                 element={<Navigate to={RoutePaths.CATALOGS} replace />}
               />
-              <Route path={RoutePaths.CATALOGS} element={<CatalogPage />} />
-              <Route path={RoutePaths.CAMPAIGNS} element={<CampaignPage />} />
               <Route path={RoutePaths.ALL} element={<PageNotFound />} />
             </Routes>
           </Suspense>
