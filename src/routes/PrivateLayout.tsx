@@ -11,6 +11,7 @@ const CatalogPage = lazy(() => import('@pages/CatalogPage'));
 const CampaignPage = lazy(() => import('@pages/CampaignPage'));
 const AdScreenPage = lazy(() => import('@pages/AdScreen'));
 const GamesPage = lazy(() => import('@pages/Games'));
+const SpinTheWheelPage = lazy(() => import('@pages/SpinTheWheel'));
 
 const PrivateLayout = () => {
   const [isBarExpanded, setBarExpanded] = useState(true);
@@ -46,6 +47,7 @@ const PrivateLayout = () => {
               <Route
                   path={RoutePaths.GAMES} element={<GamesPage />}
               />
+              <Route path={RoutePaths.SPIN} element={<SpinTheWheelPage />} />
               <Route path={RoutePaths.ALL} element={<PageNotFound />} />
             </Routes>
           </Suspense>
