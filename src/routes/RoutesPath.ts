@@ -5,7 +5,8 @@ const RoutePaths = {
   CAMPAIGNS: '/campaigns',
   TVADSCREEN: '/tvadscreen',
   GAMES: '/games',
-  PLAYERS: '/player'
+  PLAYERS: '/player',
+  SPIN: '/spin'
 };
 
 export default RoutePaths;
