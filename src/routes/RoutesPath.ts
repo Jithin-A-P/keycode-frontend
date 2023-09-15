@@ -1,8 +1,8 @@
 const RoutePaths = {
   ALL: '*',
   HOME: '/',
-  CATALOGS: '/catalogs',
-  CAMPAIGNS: '/campaigns',
+  CATALOGS: '/admin/catalogs',
+  CAMPAIGNS: '/admin/campaigns',
   TVADSCREEN: '/tvadscreen',
   GAMES: '/games',
   MOBILE_HOME: '/screens/:id/:uid',

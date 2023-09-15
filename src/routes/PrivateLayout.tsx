@@ -46,9 +46,6 @@ const PrivateLayout = () => {
               <Route path={RoutePaths.CATALOGS} element={<CatalogPage />} />
               <Route path={RoutePaths.CAMPAIGNS} element={<CampaignPage />} />
               <Route
-                  path={RoutePaths.TVADSCREEN} element={<AdScreenPage />}
-              />
-              <Route
                   path={RoutePaths.GAMES} element={<GamesPage />}
               />
               <Route

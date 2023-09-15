@@ -179,6 +179,7 @@ const CreateCampaign = () => {
           }}
         >
           <CardGrid
+          data={{}}
             // cardStyle={{ width: 150, height: 150 }}
             // cardMediaStyle={{ height: 80, minWidth: 150 }}
             // md={3}
