@@ -9,15 +9,26 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    align-items: flex-end;
 }
 
 .available-games {
     color: white;
     font-family: 'Syne', sans-serif;
     font-weight: 500;
+    font-size: 14pt;
 }
 
-.games-carousel {
-    border-radius: 30px;
-    overflow: hidden;
+.see-all {
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+}
+
+.scrolling-wrapper {
+    display: flex;
+    /* flex-wrap: nowrap; */
+    overflow-x: auto;
+    min-width: 100px;
+    height: 400px;
 }
