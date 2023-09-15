@@ -3,17 +3,17 @@ import QRCode from "react-qr-code";
 import { useEffect, useRef, useState } from 'react';
 
 import ReactCardFlip from "react-card-flip";
+import YouTubePlayer from 'react-youtube';
 import styles from './style';
 
 const imageUrl = 'https://developers.google.com/static/admob/images/full-screen/image01.png';
-const embedId = 'https://www.youtube.com/embed/dFg8Nu2X5Mo?autoplay=1&mute=1&enablejsapi=1&controls=0&loop=1&playlist=dFg8Nu2X5Mo';
+const videoId = 'dFg8Nu2X5Mo'
 const MediaPlayer = (props) =>{
-    const {} = props;
+    const {mediaType, onVideoend} = props;
 
   const [qrHeight, setQRHeight] = useState(100);
   const [qrLink, setQrLink] = useState('Hello');
   const [videoDimensions, setVideoDimensions] = useState({width: 100, height:100})
-  const [mediaType, setMediatype] = useState('VIDEO');
   const [flip, setFlip] = useState(false);
   const qrRef = useRef(null);
   const videoRef = useRef(null)
@@ -22,7 +22,7 @@ const MediaPlayer = (props) =>{
   let interval;
 
   useEffect(()=>{
-    setQRHeight(qrRef.current.clientHeight)
+    setQRHeight(qrRef.current.clientHeight - 20)
     setVideoDimensions( {width: videoRef.current.clientWidth,
       height: videoRef.current.clientHeight})
   },[]);
@@ -46,7 +46,7 @@ const MediaPlayer = (props) =>{
       setFlip(false);
     }
   },[isDisableFlip])
-
+console.log(mediaType)
   return (
     <div style={styles.container}>
       <div style={styles.topContainer} ref={videoRef}>
@@ -54,13 +54,17 @@ const MediaPlayer = (props) =>{
           <div style={{ backgroundImage: `url(${imageUrl})`, width: '100%', height:'100%', backgroundPosition: 'center', backgroundSize:'cover', backgroundRepeat: 'no-repeat'}} />
             
         ):(
-          <iframe
-            width={videoDimensions.width}
-            height={videoDimensions.height}
-            src={embedId}
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
+        <YouTubePlayer
+            opts={{
+                width: videoDimensions.width,
+                height:  videoDimensions.height,
+                playerVars:{
+                  autoplay: 1,
+                  controls:0
+                }}}
+            videoId={videoId}
+            onEnd={onVideoend}
+            
         />
         )}
         <div />
@@ -79,14 +83,11 @@ const MediaPlayer = (props) =>{
             )}      
              </div>
             <div style={styles.bottomRight}>
-              <div />
-              <div style={styles.bottomRight} >
                 <QRCode
                     style={styles.qrCode}
                     value={qrLink}
                     size={qrHeight}
                   />
-              </div>
             </div>
       </div>
     </div>

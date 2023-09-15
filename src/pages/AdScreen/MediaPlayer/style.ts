@@ -1,14 +1,12 @@
 export default {
     container:{
-       maxWidth: '700px',
-      //  height: '100vh',
-      height: '750px',
+       height: '100vh',
        margin: 'auto',
        backgroundColor: 'red',
     },
     topContainer:{
       height: '80%',
-      backgroundColor: 'yellow'
+      backgroundColor: 'white'
     },
     bottomContainer:{
       backgroundColor: 'black',
@@ -31,6 +29,8 @@ export default {
       margin:'auto'
     },
     bottomRight: {
+      backgroundColor: 'white',
+      padding: 10,
     },
     qrCode:{
       width: 'auto',
