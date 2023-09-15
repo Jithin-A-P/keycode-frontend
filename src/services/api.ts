@@ -19,9 +19,17 @@ export const api = createApi({
       query: () => `/kiosks/1/queue/next`,
       transformResponse: (data: any) => data?.data
     }),
+    postAnnouncement: builder.mutation({
+      query: (body) => ({
+        url: '/medias',
+        method: 'PATCH',
+        body
+      }),
+      transformResponse: (data: any) => data?.data
+    })
   }),
 })
 
-export const { useGetCatalogsQuery, useGetCampaignsQuery, useGetKIOSKSchedulerQuery, useGetKiosksQuery } = api;
+export const { useGetCatalogsQuery, useGetCampaignsQuery, useGetKIOSKSchedulerQuery, useGetKiosksQuery, usePostAnnouncementMutation } = api;
 
 export default api;
