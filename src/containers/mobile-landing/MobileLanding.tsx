@@ -73,6 +73,18 @@ const MobileLanding = () => {
           title='Name'
         />
       </Card> */}
+      <div className='scrolling-wrapper'>
+        <img
+          className='game-card'
+          src={require(`../../assets/images/cola-ad.png`)}
+          alt=''
+        />
+        <img
+          className='game-card'
+          src={require(`../../assets/images/cola-ad.png`)}
+          alt=''
+        />
+      </div>
       <h2 className='available-games games-header'>INSTANT UPLOADS</h2>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {instantUploadItem(
@@ -102,18 +114,6 @@ const MobileLanding = () => {
           36,
           () => {}
         )}
-      </div>
-      <div className='scrolling-wrapper'>
-        <img
-          className='game-card'
-          src={require(`../../assets/images/cola-ad.png`)}
-          alt=''
-        />
-        <img
-          className='game-card'
-          src={require(`../../assets/images/cola-ad.png`)}
-          alt=''
-        />
       </div>
     </div>
   );
