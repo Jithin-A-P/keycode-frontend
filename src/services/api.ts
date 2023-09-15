@@ -5,12 +5,15 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
   endpoints: (builder) => ({
-    getPokemonByName: builder.query({
+    getCatalogs: builder.query({
+      query: (name) => `pokemon/${name}`,
+    }),
+    getCampaigns: builder.query({
       query: (name) => `pokemon/${name}`,
     }),
   }),
 })
 
-export const { useGetPokemonByNameQuery } = api;
+export const { useGetCatalogsQuery, useGetCampaignsQuery } = api;
 
 export default api;
