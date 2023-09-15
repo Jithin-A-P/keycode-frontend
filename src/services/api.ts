@@ -49,7 +49,10 @@ export const api = createApi({
         body
       }),
       transformResponse: (data: any) => data?.data
-    })
+    }),
+    getStartSpinTrigger: builder.query({
+      query: () => `kiosks/1/spin`,
+    }),
   }),
 });
 
@@ -65,7 +68,8 @@ export const {
   useGetKIOSKSchedulerQuery,
   useLazyGetKIOSKSchedulerQuery,
   useGetKiosksQuery,
-  usePostAnnouncementMutation
+  usePostAnnouncementMutation,
+  useLazyGetStartSpinTriggerQuery
 } = api;
 
 export default api;

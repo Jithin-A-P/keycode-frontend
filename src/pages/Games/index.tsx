@@ -3,7 +3,8 @@ import { Button } from '@components';
 import { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 
-const Games = () =>{
+const Games = (props) =>{
+  const { onGameEnd } = props;
     const socket = useRef(null);
     const [ropeYState, setRopeYState] = useState(0);
     useEffect(() => {
@@ -37,6 +38,7 @@ const Games = () =>{
     useEffect(() => {
       if(ropeYState === 5 || ropeYState === -5){
         socket.current.emit("game_end_request", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "1"});
+        onGameEnd();
       }
     }, [ropeYState])
   
@@ -77,7 +79,7 @@ const Games = () =>{
           alt='asd'
           className='transition-all'
         />
-        <Button
+        {/* <Button
         className='absolute'
         handleButtonClick={() => {
           setRopeYState(ropeYState - 1);
@@ -94,7 +96,7 @@ const Games = () =>{
         }}
       >
         clik2
-      </Button>
+      </Button> */}
       </div>
     </div>
   );
