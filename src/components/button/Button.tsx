@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { CircularLoader } from '@icons';
+import { Button as MuiButton } from '@mui/material';
 
 import { IButtonProps } from './types';
 
@@ -26,7 +27,7 @@ const Button: FC<IButtonProps> = (props) => {
   };
 
   return (
-    <button
+    <MuiButton
       className={`${className} ${
         disabled
           ? `bg-slate-500 opacity-40 cursor-not-allowed ${disabledStyle}`
@@ -45,7 +46,7 @@ const Button: FC<IButtonProps> = (props) => {
         {children}
         {tailIcon && tailIcon}
       </div>
-    </button>
+    </MuiButton>
   );
 };
 

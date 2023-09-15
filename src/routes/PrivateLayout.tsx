@@ -11,6 +11,8 @@ const CatalogPage = lazy(() => import('@pages/CatalogPage'));
 const CampaignPage = lazy(() => import('@pages/CampaignPage'));
 const AdScreenPage = lazy(() => import('@pages/AdScreen'));
 const GamesPage = lazy(() => import('@pages/Games'));
+const PlayerPage = lazy(() => import('@pages/Player'));
+const Flappy = lazy(() => import('@pages/Games/Flappy'));
 
 const PrivateLayout = () => {
   const [isBarExpanded, setBarExpanded] = useState(true);
@@ -48,6 +50,10 @@ const PrivateLayout = () => {
               <Route
                   path={RoutePaths.GAMES} element={<GamesPage />}
               />
+              <Route
+                  path={RoutePaths.PLAYERS} element={<PlayerPage />}
+              />
+              <Route path={RoutePaths.FLAPPY} element={<Flappy />} />
               <Route path={RoutePaths.ALL} element={<PageNotFound />} />
             </Routes>
           </Suspense>
