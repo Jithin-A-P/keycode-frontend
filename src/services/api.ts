@@ -10,6 +10,15 @@ export const api = createApi({
     }),
     getCampaigns: builder.query({
       query: () => `/campaigns`,
+      providesTags: ['campaigns'],
+    }),
+    createCampaign: builder.mutation({
+      query: (body) => ({
+        url: `/campaigns`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['campaigns'],
     }),
     getKiosks: builder.query({
       query: () => `/kiosks`,
@@ -56,6 +65,7 @@ export const {
   useGetKIOSKSchedulerQuery,
   useLazyGetKIOSKSchedulerQuery,
   useGetKiosksQuery,
+  useCreateCampaignMutation,
 } = api;
 
 export default api;

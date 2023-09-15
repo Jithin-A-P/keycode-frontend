@@ -43,7 +43,7 @@ const CustomTable = (props) => {
                             <TableCell className='capitalize'>{row.name}</TableCell>
                             <TableCell>{getFormattedDate(row.startDate)}</TableCell>
                             <TableCell>{getFormattedDate(row.endDate)}</TableCell>
-                            <TableCell>{row.kioskCount || '-'}</TableCell>
+                            <TableCell>{row.kiosksCount || '-'}</TableCell>
                             <TableCell>{renderStatus(row.status)}</TableCell>
                             <TableCell>Rs {row.totalPrice}</TableCell>
                         </TableRow>

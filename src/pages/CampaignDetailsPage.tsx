@@ -13,6 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useParams } from 'react-router-dom';
 
 import { useGetCampaignByIdQuery } from '@services/api';
+import { time } from '@constants/time';
 
 const statusMapper = {
     ACTIVE: { label: 'Active', color: 'success' },
@@ -43,7 +44,7 @@ const CampaignDetailsPage = () => {
     }
 
     const isYoutubeVideo = (url) =>
-        url.includes('youtube.com') || url.includes('youtu.be');
+        url?.includes('youtube.com') || url?.includes('youtu.be');
 
     const isVideo = (url) => /\.(mp4|mpg|mpeg4|webp|avi|mkv)$/.test(url);
 
@@ -96,9 +97,9 @@ const CampaignDetailsPage = () => {
                         <AccordionDetails>
                             {i.selectedTimeslots.map(slot => (
                                 <div key={slot.id} className='shadow-sm flex gap-10 mb-5 p-2 mr-2'>
-                                    <div><AccessTimeIcon fontSize='small' /> {slot.time}</div>
+                                    <div className='w-[150px]'><AccessTimeIcon fontSize='small' /> {time[slot.time]}</div>
                                     <div><CurrencyRupeeIcon fontSize='small' /> {slot.pricePerSecond} /sec</div>
-                                    {campaignData?.status === 'ACTIVE' ? <div className='flex items-center gap-1'>
+                                    {campaignData?.status === 'ACTIVE' ? <div className='flex items-center gap-1 justify-end'>
                                         <div className='loader__dot rounded w-2 h-2 bg-green-500' />
                                         <span className='text-[10px] text-green-500'>LIVE</span>
                                         {slot.liveViewCount}
