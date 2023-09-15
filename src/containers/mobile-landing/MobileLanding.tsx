@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import RoutePaths from '@routes/RoutesPath';
 import './styles.css';
 
-const carouselImages = ['cola-ad.png', 'cola-ad.png', 'cola-ad.png'];
-
 const MobileLanding = () => {
   const navigate = useNavigate();
 
@@ -66,22 +64,15 @@ const MobileLanding = () => {
           See All
         </button>
       </div>
-      {/* <Card sx={{ borderRadius: 2 }}>
-        <CardMedia
-          style={{ aspectRatio: 9 / 16 }}
-          image={require(`../../assets/images/cola-ad.png`)}
-          title='Name'
-        />
-      </Card> */}
       <div className='scrolling-wrapper'>
         <img
           className='game-card'
-          src={require(`../../assets/images/cola-ad.png`)}
+          src={require(`../../assets/images/games/tug-of-war.png`)}
           alt=''
         />
         <img
           className='game-card'
-          src={require(`../../assets/images/cola-ad.png`)}
+          src={require(`../../assets/images/games/flappy-bird.png`)}
           alt=''
         />
       </div>
@@ -115,15 +106,16 @@ const MobileLanding = () => {
           () => {}
         )}
       </div>
+      <br />
       <div className='scrolling-wrapper'>
         <img
           className='game-card'
-          src={require(`../../assets/images/games/tug-of-war.png`)}
+          src={require(`../../assets/images/mobile-ad.png`)}
           alt=''
         />
         <img
           className='game-card'
-          src={require(`../../assets/images/games/flappy-bird.png`)}
+          src={require(`../../assets/images/cola-ad.png`)}
           alt=''
         />
       </div>
