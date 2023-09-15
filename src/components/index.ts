@@ -17,11 +17,13 @@ import SearchInput from './search-input/searchInput';
 import SingleSelect from './dropdown/SingleSelect';
 import Tab from './tab/Tab';
 import ToggleButton from './toggle-button/ToggleButton';
-// import CustomTable from './table/Table';
+import CustomTable from './table/Table';
 import CardGrid from './card-grid/CardGrid';
 import HeaderWithButton from './header-with-button/HeaderWithButton';
 
 export {
+  CardGrid,
+  CustomTable,
   Button,
   Checkbox,
   Clipboard,

@@ -1,0 +1,29 @@
+.game-controller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.game-header {
+    font-family: 'Lilita One', cursive;
+}
+
+.game-button {
+    height: 250px;
+    background-color: #a0c5c5;
+    border-radius: 50px;
+    margin-top: 150px;
+    width: 90%;
+    font-family: 'Lilita One', cursive;
+    font-size: 26pt;
+    color: #ffffff;
+}
+
+.game-button:focus {
+    background-color: #a0c5c5;
+}
+
+.game-button:active {
+    background-color: #a0c5c5;
+}

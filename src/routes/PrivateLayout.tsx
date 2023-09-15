@@ -10,6 +10,10 @@ import RoutePaths from './RoutesPath';
 const PageNotFound = lazy(() => import('@pages/PageNotFound'));
 const CatalogPage = lazy(() => import('@pages/CatalogPage'));
 const CampaignPage = lazy(() => import('@pages/CampaignPage'));
+const AdScreenPage = lazy(() => import('@pages/AdScreen'));
+const GamesPage = lazy(() => import('@pages/Games'));
+const PlayerPage = lazy(() => import('@pages/Player'));
+const Flappy = lazy(() => import('@pages/Games/Flappy'));
 
 const PrivateLayout = () => {
   const [isBarExpanded, setBarExpanded] = useState(true);
@@ -33,15 +37,24 @@ const PrivateLayout = () => {
         <div className='page mt-[80px]'>
           <Suspense>
             <Routes>
+              <Route path={RoutePaths.CATALOGS} element={<CatalogPage />} />
+              <Route path={RoutePaths.CAMPAIGNS} element={<CampaignPage />} />
               <Route
                 path={RoutePaths.HOME}
-                element={<Navigate to={RoutePaths.CATALOGS} />}
+                element={<Navigate to={RoutePaths.CATALOGS}  />}
               />
               <Route path={RoutePaths.CATALOGS} element={<CatalogPage />} />
               <Route path={RoutePaths.CAMPAIGNS} element={<CampaignPage />} />
-              <Route path={RoutePaths.TVADSCREEN} element={<AdScreenPage />} />
-              <Route path={RoutePaths.GAMES} element={<GamesPage />} />
-              <Route path={RoutePaths.PLAYERS} element={<PlayerPage />} />
+              <Route
+                  path={RoutePaths.TVADSCREEN} element={<AdScreenPage />}
+              />
+              <Route
+                  path={RoutePaths.GAMES} element={<GamesPage />}
+              />
+              <Route
+                  path={RoutePaths.PLAYERS} element={<PlayerPage />}
+              />
+              <Route path={RoutePaths.FLAPPY} element={<Flappy />} />
               <Route
                 path={RoutePaths.CREATE_CAMPAIGN}
                 element={<CreateCampaign />}

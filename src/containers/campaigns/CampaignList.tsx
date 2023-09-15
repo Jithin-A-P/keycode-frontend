@@ -5,11 +5,12 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import RoutePaths from '@routes/RoutesPath';
 
-// import { useLazyGetUsersQuery } from './store/api';
+const campaignHeaders = ['Name', 'Duration', 'Status', 'Price'];
 
 const CampaignList = (props) => {
 
-  const { data } = useGetCampaignsQuery('charmander');
+  const { data: campaignsResponse } = useGetCampaignsQuery('');
+  const campaigns = campaignsResponse?.data;
 
   const navigate = useNavigate();
 
@@ -25,8 +26,9 @@ const CampaignList = (props) => {
         className='overflow-y-auto rounded-lg'
         style={{ maxHeight: 'calc(100vh - 281px)' }}
       >
+        {campaigns && <CustomTable headers={campaignHeaders} data={campaigns} />}
       </div>
-    </>
+    </div>
   );
 };
 
