@@ -14,6 +14,7 @@ const AdScreenPage = lazy(() => import('@pages/AdScreen'));
 const GamesPage = lazy(() => import('@pages/Games'));
 const PlayerPage = lazy(() => import('@pages/Player'));
 const Flappy = lazy(() => import('@pages/Games/Flappy'));
+const SubmitCampaign = lazy(() => import('@pages/SubmitCampaign'))
 
 const PrivateLayout = () => {
   const [isBarExpanded, setBarExpanded] = useState(true);
@@ -55,6 +56,10 @@ const PrivateLayout = () => {
               <Route
                 path={RoutePaths.CREATE_CAMPAIGN}
                 element={<CreateCampaign />}
+              />
+              <Route
+                path={RoutePaths.SUBMIT_CAMPAIGN}
+                element={<SubmitCampaign />}
               />
               <Route path={RoutePaths.ALL} element={<PageNotFound />} />
             </Routes>
