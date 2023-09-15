@@ -89,7 +89,7 @@ const MobileLanding = () => {
     //     </Accordion>
     //   </div>
     // </div>
-    
+
     <div>
       <h2 className='mobile-head'>HI, PLAYER! READY TO PLAY?</h2>
       <br />
@@ -98,20 +98,16 @@ const MobileLanding = () => {
         <h2 className='see-all'>See All</h2>
       </div>
       <div className='scrolling-wrapper'>
-        <Card sx={{ borderRadius: 2, height: 300 }}>
-          <CardMedia
-            style={{ aspectRatio: 1 }}
-            image={require(`../../assets/images/cola-ad.png`)}
-            title='Name'
-          />
-        </Card>
-        <Card sx={{ borderRadius: 2, height: 300 }}>
-          <CardMedia
-            style={{ aspectRatio: 1 }}
-            image={require(`../../assets/images/cola-ad.png`)}
-            title='Name'
-          />
-        </Card>
+        <img
+          className='game-card'
+          src={require(`../../assets/images/cola-ad.png`)}
+          alt=''
+        />
+        <img
+          className='game-card'
+          src={require(`../../assets/images/cola-ad.png`)}
+          alt=''
+        />
       </div>
     </div>
   );
