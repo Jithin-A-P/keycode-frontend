@@ -1,0 +1,22 @@
+.game-lost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.you-lost-img {
+    animation: scale 1s;
+    -moz-animation: scale 0.5s;
+    -webkit-animation: scale 0.5s;
+    -o-animation: scale 0.5s;
+}
+
+@keyframes scale {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        width: 1.0;
+    }
+}

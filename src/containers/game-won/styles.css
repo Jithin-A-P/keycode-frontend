@@ -1,0 +1,30 @@
+.game-won {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reward-button {
+    background-color: #3da6fc;
+    color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 20px;
+    margin-top: 100px;
+}
+
+.you-win-img {
+    animation: scale 1s;
+    -moz-animation: scale 0.5s;
+    -webkit-animation: scale 0.5s;
+    -o-animation: scale 0.5s;
+}
+
+@keyframes scale {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        width: 1.0;
+    }
+}

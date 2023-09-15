@@ -8,6 +8,8 @@ import RoutePaths from './RoutesPath';
 const PageNotFound = lazy(() => import('@pages/PageNotFound'));
 const MobileLandingPage = lazy(() => import('@pages/MobileLandingPage'));
 const GameControllerPage = lazy(() => import('@pages/GameControllerPage'));
+const GameWonPage = lazy(() => import('@pages/GameWonPage'));
+const GameLostPage = lazy(() => import('@pages/GameLostPage'));
 
 const PrivateLayout = () => (
   <div>
@@ -22,6 +24,8 @@ const PrivateLayout = () => (
           <Routes>
             <Route path={RoutePaths.MOBILE_HOME} element={<MobileLandingPage />} />
             <Route path={RoutePaths.GAME_CONTROLLER} element={<GameControllerPage />} />
+            <Route path={RoutePaths.GAME_WON} element={<GameWonPage />} />
+            <Route path={RoutePaths.GAME_LOST} element={<GameLostPage />} />
             <Route path={RoutePaths.ALL} element={<PageNotFound />} />
           </Routes>
         </Suspense>

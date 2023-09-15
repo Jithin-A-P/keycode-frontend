@@ -6,7 +6,7 @@ const GameController = () => {
   const { playerId } = useParams();
 
   const onButtonClick = () => {
-    console.log('BUTTON CLICKED');
+    navigator.vibrate(50)
   };
 
   return (
