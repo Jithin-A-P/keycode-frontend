@@ -81,7 +81,6 @@ const SpinTheWheel = () => {
     <div className='flex flex-col justify-center max-w-md'>
       <Wheel
         mustStartSpinning={startSpin}
-        spinDuration={0.01}
         data={data}
         prizeNumber={prize}
         onStopSpinning={showWinnings}
