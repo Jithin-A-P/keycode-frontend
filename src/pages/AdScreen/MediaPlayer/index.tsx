@@ -5,9 +5,6 @@ import ReactPlayer from 'react-player';
 import ReactCardFlip from 'react-card-flip';
 import styles from './style';
 
-const imageUrl =
-  'https://developers.google.com/static/admob/images/full-screen/image01.png';
-const videoId = 'dFg8Nu2X5Mo';
 const MediaPlayer = (props) => {
   const { mediaType, onVideoend, data } = props;
 
@@ -62,6 +59,7 @@ const MediaPlayer = (props) => {
   };
 
   const screen = () => {
+    if(!data) return <div />
     if (data && data?.type === 'advertise_here') {
       return (
         <div
@@ -82,6 +80,15 @@ const MediaPlayer = (props) => {
           }}
         />
       );
+    }
+    if(mediaType === 'announcement'){
+     return(
+        <div
+          style={styles.announcementBanner}
+        >
+          <div style={styles.announcementText}>{data?.media?.title ?? 'Happy birthday'}</div>
+        </div>
+     )
     }
     return (
       <ReactPlayer

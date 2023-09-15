@@ -40,5 +40,24 @@ export default {
     },
     imageContainer:{
 
+    },
+    announcementBanner:{
+        backgroundImage: `url(/assets/announcement.png)`,
+        width: '100%',
+        height: '100%',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+    },
+    announcementText:{
+      color: '#ffffff',
+      fontSize: 60,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%',
+      padding: '0px 20px',
+      fontWeight: '600',
+      textAlign: 'center' as const
     }
 }
