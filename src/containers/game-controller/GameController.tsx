@@ -11,7 +11,7 @@ const GameController = () => {
   const [player, setPlayer] = useState('');
 
   const [pushToKioskQueueById, result] = usePushToKioskRequestIdMutation();
-    
+
   useEffect(() => {
     pushToKioskQueueById({id: 123, type: "game_two_players", name: "tug_of_war"});
     socket.current = (io as any).connect('http://localhost:5050', {
