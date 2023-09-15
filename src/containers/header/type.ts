@@ -1,6 +1,6 @@
 export type IHeaderProps = {
   isBarExpanded: boolean;
-  toggleSideNavBar: VoidFunction;
+  toggleSideNavBar?: VoidFunction;
 };
 
 export interface IPageDescription {
