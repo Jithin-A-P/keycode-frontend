@@ -1,6 +1,8 @@
 
 import {  useEffect, useMemo, useState } from 'react';
 import { useGetKIOSKSchedulerQuery } from '@services/api'
+import Flappy from '@pages/Games/Flappy';
+import TugOfWar from '@pages/Games';
 import MediaPlayer from './MediaPlayer';
 import SpinThewheel from './SpinTheWheel';
 import styles from './style';
@@ -53,6 +55,10 @@ const AdScreen = () =>{
        return <MediaPlayer mediaType={mediaType} onVideoend={onVideoEnd}/>
       case 'SPIN_THE_WHEEL':
         return <SpinThewheel />
+      case '1P':
+        return <Flappy />
+      case '2P':
+        return <TugOfWar />
       default:
         return  <div />
     }

@@ -6,7 +6,7 @@ export default {
     },
     topContainer:{
       height: '80%',
-      backgroundColor: 'yellow'
+      backgroundColor: 'white'
     },
     bottomContainer:{
       backgroundColor: 'black',

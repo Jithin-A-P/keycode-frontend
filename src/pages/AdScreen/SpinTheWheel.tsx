@@ -78,7 +78,7 @@ const SpinTheWheel = () => {
   const winData = data[prize];
 
   return (
-    <div className='flex flex-col justify-center max-w-md'>
+    <main className='h-screen w-full flex flex-col items-center justify-center'>
       <Wheel
         mustStartSpinning={startSpin}
         data={data}
@@ -100,7 +100,7 @@ const SpinTheWheel = () => {
       </Button>
       <Dialog open={showModal}>
         <Card className='max-w-sm'>
-          <div className='w-full h-36 bg-white flex justify-center'>
+          <div className='w-full h-40 py-2 bg-white flex justify-center'>
             <img src='/voucher.avif' alt='' height={100} />
             </div>
           <div className='text-white bg-gray-700 p-4 pb-10 relative'>
@@ -113,7 +113,7 @@ const SpinTheWheel = () => {
           </div>
         </Card>
       </Dialog>
-    </div>
+    </main>
   );
 };
 
