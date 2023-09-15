@@ -8,7 +8,6 @@ import styles from './style';
 const imageUrl = 'https://developers.google.com/static/admob/images/full-screen/image01.png';
 const embedId = 'https://www.youtube.com/embed/dFg8Nu2X5Mo?autoplay=1&mute=1&enablejsapi=1&controls=0&loop=1&playlist=dFg8Nu2X5Mo';
 const MediaPlayer = (props) =>{
-    const {} = props;
 
   const [qrHeight, setQRHeight] = useState(100);
   const [qrLink, setQrLink] = useState('Hello');
@@ -22,7 +21,7 @@ const MediaPlayer = (props) =>{
   let interval;
 
   useEffect(()=>{
-    setQRHeight(qrRef.current.clientHeight)
+    setQRHeight(qrRef.current.clientHeight - 20)
     setVideoDimensions( {width: videoRef.current.clientWidth,
       height: videoRef.current.clientHeight})
   },[]);
@@ -79,14 +78,11 @@ const MediaPlayer = (props) =>{
             )}      
              </div>
             <div style={styles.bottomRight}>
-              <div />
-              <div style={styles.bottomRight} >
                 <QRCode
                     style={styles.qrCode}
                     value={qrLink}
                     size={qrHeight}
                   />
-              </div>
             </div>
       </div>
     </div>

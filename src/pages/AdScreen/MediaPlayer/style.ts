@@ -1,8 +1,6 @@
 export default {
     container:{
-       maxWidth: '700px',
-      //  height: '100vh',
-      height: '750px',
+       height: '100vh',
        margin: 'auto',
        backgroundColor: 'red',
     },
@@ -31,6 +29,8 @@ export default {
       margin:'auto'
     },
     bottomRight: {
+      backgroundColor: 'white',
+      padding: 10,
     },
     qrCode:{
       width: 'auto',
