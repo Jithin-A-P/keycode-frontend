@@ -16,17 +16,29 @@ const Games = () =>{
       socket.current.on("connect", () => {
         console.log("connected to Game tUg of war");
         console.log(socket.current.id); // x8WIv7-mJelg7on_ALbx
+        socket.current.emit("game_started");
       });
       socket.current.on('button_click_data', (data)=> {
-        console.log("playing data", data);
+        console.log("playing data", data, ropeYState);
+        if(ropeYState === 5 || ropeYState === -5){
+          socket.current.emit("game_ended", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "123"});
+        }
+        else{
         if(data.player === 'playerA'){
-         setRopeYState(ropeYState-1);
+         setRopeYState((prevState) => prevState - 1);
         }
         if(data.player === 'playerB'){
-          setRopeYState(ropeYState+1);
+          setRopeYState((prevState) => prevState + 1);
          }
+        }
       });
     }, []);
+
+    useEffect(() => {
+      if(ropeYState === 5 || ropeYState === -5){
+        socket.current.emit("game_ended", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "123"});
+      }
+    }, [ropeYState])
   
 
   return (
@@ -65,11 +77,11 @@ const Games = () =>{
           alt='asd'
           className='transition-all'
         />
-        {/* <Button
+        <Button
         className='absolute'
         handleButtonClick={() => {
           setRopeYState(ropeYState - 1);
-          socket.current.emit('game_started', 'someRandomId');
+          // socket.current.emit('game_started', 'someRandomId');
         }}
       >
         clik1
@@ -82,7 +94,7 @@ const Games = () =>{
         }}
       >
         clik2
-      </Button> */}
+      </Button>
       </div>
     </div>
   );

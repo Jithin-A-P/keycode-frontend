@@ -25,7 +25,7 @@ const mockData = [{
 }]
 
 const AdScreen = () =>{
-  const [screenType, setScreenType] = useState('MEDIA_PLAYER');
+  const [screenType, setScreenType] = useState('2P');
   const [mediaType, setMediaType] = useState('IMAGE');
   const [actionStatus, setActionStatus] = useState('START');
   const { data, error, isLoading } = useGetKIOSKSchedulerQuery(12);
@@ -45,9 +45,9 @@ const AdScreen = () =>{
     setScreenType('GAME');
   }
 
-  const onGameEnd = () =>{
+  // const onGameEnd = () =>{
 
-  }
+  // }
 
   const renderScreen = useMemo(()=>{
     switch(screenType){

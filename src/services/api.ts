@@ -28,6 +28,16 @@ export const api = createApi({
         body,
       }),
     }),
+    pushToKioskRequestId: builder.mutation({
+      query: ({ id, ...body }) => ({
+        url: `kiosks/${id}/queue/request`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    getKIOSKScheduler: builder.query({
+      query: (name) => `pokemon/${name}`,
+    }),
   }),
 });
 
@@ -36,10 +46,12 @@ export const {
   useLazyGetCatalogsQuery,
   useGetCampaignsQuery,
   useGetCampaignByIdQuery,
-
   useGetKioskByIdQuery,
   useGetKioskQueueByIdQuery,
   usePushToKioskQueueByIdMutation,
+  usePushToKioskRequestIdMutation,
+  useGetKIOSKSchedulerQuery,
+  useLazyGetKIOSKSchedulerQuery,
 } = api;
 
 export default api;
