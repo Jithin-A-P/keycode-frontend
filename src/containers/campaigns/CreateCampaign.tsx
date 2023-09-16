@@ -8,7 +8,6 @@ import {
   TextField,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import RoutePaths from '@routes/RoutesPath';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Select from '@mui/material/Select';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -19,15 +18,20 @@ import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import { CardGrid, HeaderWithButton } from '@components';
 import { useGetCatalogsQuery } from '@services/api';
+import { storeData } from '@containers/notification/reducer';
+import { useAppDispatch } from '@store/store';
 
 const CreateCampaign = () => {
   const [type, setType] = useState('Time slot');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCampaign, setSelectedCampaign] = useState({ url: null });
+  const [selectedCampaign, setSelectedCampaign] = useState({ url: null, id: null });
   const [frequency, setFrequency] = useState('');
+  const [duration, setDuration] = useState('');
   const [campaignName, setCampaignName] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const { data: catalogsResponse } = useGetCatalogsQuery('');
   const catalogs = catalogsResponse?.data;
@@ -50,6 +54,10 @@ const CreateCampaign = () => {
     setFrequency(event.target.value);
   };
 
+  const onChangeDuration = (event) => {
+    setDuration(event.target.value);
+  };
+
   const classNames = {
     label: 'w-[150px] text-m font-semibold text-jaguar ml-4',
     row: 'flex items-center mt-5',
@@ -61,20 +69,34 @@ const CreateCampaign = () => {
   };
 
   const onChangeStartDate = (event) => {
-    setStartDate(event.target.value);
+    setStartDate(event.$d);
   };
 
   const onChangeEndDate = (event) => {
-    setEndDate(event.target.value);
+    setEndDate(event.$d);
   };
 
   const isVideo = (url) => /\.(mp4|mpg|mpeg4|webp|avi|mkv)$/.test(url);
+
+  const navigateToSubmitPage = () => {
+    const payload = {
+      frequency: Number(frequency),
+      campaignName,
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+      mediaId: selectedCampaign.id,
+      duration: Number(duration),
+    };
+    
+    dispatch(storeData(payload));
+    navigate('/admin/campaign/submit');
+  };
 
   return (
     <div>
       <HeaderWithButton
         primaryButtonText='Next'
-        onClickPrimaryButton={() => navigate(RoutePaths.CREATE_CAMPAIGN)}
+        onClickPrimaryButton={navigateToSubmitPage}
         title='Add a new Campaign'
         primaryIcon={<NavigateNextIcon />}
       />
@@ -131,6 +153,16 @@ const CreateCampaign = () => {
           label='Frequency'
           variant='outlined'
           onChange={onChangeFrequency}
+        />
+      </div>
+      <div className={classNames.row}>
+        <div className={classNames.label}>Duration</div>
+        <TextField
+          style={{ width: '120px' }}
+          size='small'
+          label='Duration'
+          variant='outlined'
+          onChange={onChangeDuration}
         />
       </div>
       <div className={classNames.row}>

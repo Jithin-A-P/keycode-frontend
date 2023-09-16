@@ -10,7 +10,7 @@ dayjs.extend(duration);
 
 const getFormattedDate = (
   date: Date | string,
-  dateFormat = 'DD/MM/YYYY'
+  dateFormat = 'DD MMM YYYY'
 ): string => dayjs(date)?.format(dateFormat);
 
 const formatStringToDate = (date: string): Date => {

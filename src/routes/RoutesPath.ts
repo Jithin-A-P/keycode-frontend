@@ -3,6 +3,9 @@ const RoutePaths = {
   HOME: '/',
   CATALOGS: '/admin/catalogs',
   CAMPAIGNS: '/admin/campaigns',
+  CREATE_CAMPAIGN: '/admin/campaigns/create',
+  CAMPAIGN_DETAILS: '/admin/campaigns/:id',
+  SUBMIT_CAMPAIGN: '/admin/campaign/submit',
   TVADSCREEN: '/tvadscreen',
   GAMES: '/games',
   MOBILE_HOME: '/screens/:id/:uid',
@@ -14,8 +17,6 @@ const RoutePaths = {
   PLAYERS: '/player',
   SPIN: '/spin',
   FLAPPY: '/flappy',
-  CREATE_CAMPAIGN: '/campaigns/create',
-  SUBMIT_CAMPAIGN: '/admin/campaign/submit',
 };
 
 export default RoutePaths;

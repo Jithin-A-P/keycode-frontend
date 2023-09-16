@@ -78,3 +78,6 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+
+@keyframes blink {50% { background-color: transparent }}
+.loader__dot { animation: 1s blink infinite }
