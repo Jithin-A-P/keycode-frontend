@@ -1,9 +1,11 @@
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import RoutePaths from '@routes/RoutesPath';
 import { usePostAnnouncementMutation } from '@services/api';
 import { useState } from 'react';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/library.css';
+import { useNavigate } from 'react-router-dom';
 
 const MobileYoutubeLinkPage = () => {
   const [youtubeLink, setYoutubeLink] = useState('');
@@ -11,6 +13,8 @@ const MobileYoutubeLinkPage = () => {
   const [uploaded, setUploaded] = useState(false);
 
   const [updateAnnouncement] = usePostAnnouncementMutation();
+
+  const navigate = useNavigate();
 
   const onChangeLinkText = (event) => {
     setYoutubeLink(event.target.value);
@@ -22,12 +26,16 @@ const MobileYoutubeLinkPage = () => {
     setUploaded(true);
     updateAnnouncement({
       url: youtubeLink,
-      type: 'announcement'
+      type: 'youtube',
+      name: ''
     })
+    setTimeout(() => {
+       navigate(RoutePaths.MOBILE_HOME)
+    }, 3000)
   };
 
   const uploadSuccessView = () => (
-    <div className='items-center flex flex-col justify-center h-full' style={{background: '#171717'}}>
+    <div className='items-center flex flex-col justify-center h-full px-4 py-7' style={{background: '#171717'}}>
       <span className='text-center text-white'>
         Your YouTube shorts have been uploaded successfully. Your Ad will be
         played after the current running Ad. Please wait...
@@ -39,9 +47,10 @@ const MobileYoutubeLinkPage = () => {
   if (uploaded) return uploadSuccessView();
 
   return (
-    <div className='items-center flex flex-col justify-center h-full' style={{background: '#171717'}}>
+    <div className='items-center flex flex-col justify-center h-full px-4 py-7 text-center' style={{background: '#171717'}}>
+      <div className='font-bold text-white text-[24px] w-[90%] mb-[24px]'>Showcase your YouTube Shorts with us!.</div>
       <div className='mb-6 text-center w-[90%] text-white'>
-        Showcase your YouTube Shorts with us!. Enter the YouTube shorts link
+        Enter the YouTube shorts link
         below:
       </div>
       <TextField

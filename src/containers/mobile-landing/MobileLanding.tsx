@@ -49,7 +49,7 @@ const MobileLanding = () => {
   );
 
   return (
-    <div>
+    <div className='mx-4 my-7'>
       <h2 className='mobile-head'>HI, PLAYER! READY TO PLAY?</h2>
       <br />
       <div className='games-header'>

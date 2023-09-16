@@ -45,10 +45,10 @@ export const api = createApi({
     postAnnouncement: builder.mutation({
       query: (body) => ({
         url: '/medias',
-        method: 'PATCH',
+        method: 'POST',
         body
       }),
-      transformResponse: (data: any) => data?.data
+      transformResponse: (data: any) => data
     })
   }),
 });

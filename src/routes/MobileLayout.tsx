@@ -14,7 +14,7 @@ const GameLostPage = lazy(() => import('@pages/GameLostPage'));
 const PrivateLayout = () => (
   <div className='h-screen bg-black'>
     <div className='max-w-[440px] w-full h-[calc(100vh-82px)] overflow-y-auto'>
-      <div className='mx-4 my-7' style={{height: '90%'}}>
+      <div style={{height: '95%'}}>
         <Suspense>
           <Routes>
             <Route path={RoutePaths.MOBILE_HOME} element={<MobileLandingPage />} />
