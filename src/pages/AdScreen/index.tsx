@@ -48,7 +48,10 @@ const AdScreen = () => {
   }, [data, screenType]);
 
   const onGameEnd = () =>{
+    setTimeout(()=>{
+
     setScreenType('SPIN_THE_WHEEL');
+    },2000)
   }
 
   const triggerAfterSpin=()=>{

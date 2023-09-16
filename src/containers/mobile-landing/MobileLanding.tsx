@@ -94,7 +94,7 @@ const MobileLanding = () => {
           '#0682EF',
           '#094ED3',
           'announcement.png',
-          'Announcement\nLink',
+          'Broadcast\nMessage',
           37,
           37,
           () => navigate(RoutePaths.MOBILE_ANNOUNCEMENT)

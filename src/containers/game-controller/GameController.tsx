@@ -11,8 +11,9 @@ import {BASE_URL} from '@pages/constants'
 
 const GameController = () => {
   const socket = useRef(null);
+  const audioRef = useRef(null);
   const [showButtons, setShowButtons] = useState(false);
-  const [status, setStatus] = useState(null);
+  const [disableButton, setDisableButton] = useState(false);
   const [player, setPlayer] = useState('');
   const [gameAlreadyRunning, setGameAlreadyRunning] = useState(false);
   const navigate = useNavigate()
@@ -51,6 +52,7 @@ const GameController = () => {
       const playerName = result.data.data.player;
       setPlayer(playerName);
       socket.current.on('game_ended', (data) => {
+        setDisableButton(true)
         console.log(data.winner, playerName, data.winner === playerName );
         if(data.winner === playerName){
           navigate('/game-won')
@@ -82,16 +84,27 @@ const GameController = () => {
         {!showButtons ? (
           <p className='game-header'>Waiting for game to start</p>
         ) : (
+    <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
           <button
-            className='game-button'
+            style={{  backgroundColor: '#555555',
+              borderRadius: '250px',
+              marginTop: '150px',
+              fontSize: '26px',
+              color: '#ffffff',
+              padding: '100px'
+            }}
             type='button'
             onClick={() => {
+              audioRef.current.play();
               socket.current.emit('button_click', { player });
             }}
+            disabled={disableButton}
           >
             Player
           </button>
+          </div>
         )}
+        <audio ref={audioRef} src="sound.mp3" />
       </div>
     );
   }

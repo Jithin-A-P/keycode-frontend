@@ -14,14 +14,15 @@
 }
 
 .game-button {
-    height: 250px;
+    /* height: 250px; */
     background-color: #555555;
-    border-radius: 50px;
+    border-radius: 250px;
     margin-top: 150px;
-    width: 90%;
     font-family: 'Syne', cursive;
     font-size: 26pt;
     color: #ffffff;
+    padding: 100px,
+    
 }
 
 .game-button:focus {

@@ -22,7 +22,7 @@ const Games = (props) =>{
       });
       socket.current.on('button_click_data', (data)=> {
         console.log("playing data", data, ropeYState);
-        if(ropeYState === 5 || ropeYState === -5){
+        if(ropeYState === 10 || ropeYState === -10){
           // 
         }
         else{
@@ -37,8 +37,8 @@ const Games = (props) =>{
     }, []);
 
     useEffect(() => {
-      if(ropeYState === 5 || ropeYState === -5){
-        socket.current.emit("game_end_request", {winner: ropeYState === -5 ? "playerA": "playerB", screenId: "1"});
+      if(ropeYState === 10 || ropeYState === -10){
+        socket.current.emit("game_end_request", {winner: ropeYState === -10 ? "playerA": "playerB", screenId: "1"});
         onGameEnd();
       }
     }, [ropeYState])
@@ -64,17 +64,17 @@ const Games = (props) =>{
           borderStyle: 'solid',
           position: 'relative',
           width: '100%',
-          borderTopColor: ropeYState === -5 ? '#5c3fb1' : 'white',
-          borderBottomColor: ropeYState === 5 ? '#ff5f55': 'white'
+          borderTopColor: ropeYState === -10 ? '#5c3fb1' : 'white',
+          borderBottomColor: ropeYState === 10 ? '#ff5f55': 'white'
         }}
         className='flex justify-center'
       >
         <img
           style={{
             width: '430px',
-            transform: `translateY(${ropeYState * 4}%)`,
+            transform: `translateY(${ropeYState * 2}%)`,
             position: 'absolute',
-            top: '-85%',
+            top: '-63%',
           }}
           src={require('../../assets/icons/tug-of-war.png')}
           alt='asd'
