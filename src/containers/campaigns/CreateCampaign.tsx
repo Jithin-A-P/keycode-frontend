@@ -3,7 +3,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable global-require */
 import {
+  Card,
   CardMedia,
+  Grid,
   MenuItem,
   TextField,
 } from '@mui/material';
@@ -28,8 +30,8 @@ const CreateCampaign = () => {
   const [frequency, setFrequency] = useState('');
   const [duration, setDuration] = useState('');
   const [campaignName, setCampaignName] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState<Date>(null);
+  const [endDate, setEndDate] = useState<Date>(null);
 
   const dispatch = useAppDispatch();
 
@@ -191,14 +193,21 @@ const CreateCampaign = () => {
           </div>
         ) : (
           <div
-            onClick={() => openModal()}
-            style={{ height: '200px', width: '250px', borderRadius: 8 }}
+            onClick={openModal}
+            style={{ height: '81px', width: '144px', borderRadius: 8 }}
           >
-            <CardMedia
-              sx={{ height: '200px', width: '100%', borderRadius: 8 }}
-              component={isVideo(selectedCampaign.url) ? 'video' : 'image'}
-              image={selectedCampaign.url}
-            />
+            <Grid item xs={12} sm={4} md={2} key={selectedCampaign.url}>
+              <Card sx={{ maxWidth: 200, borderRadius: 4, boxShadow: 4 }} className='card-styles'>
+                <CardMedia
+                  component={(isVideo(selectedCampaign.url) && 'video') || 'image'}
+                  style={{ aspectRatio: 9 / 16 }}
+                  image={
+                    selectedCampaign.url
+                  }
+                  title='Name'
+                />
+              </Card>
+            </Grid>
           </div>
         )}
       </div>
@@ -215,8 +224,8 @@ const CreateCampaign = () => {
       >
         <div
           style={{
-            height: '60%',
-            width: '50%',
+            height: '80%',
+            width: '70%',
             backgroundColor: 'white',
             alignItems: 'center',
             justifyContent: 'center',
@@ -227,9 +236,9 @@ const CreateCampaign = () => {
         >
           <CardGrid
             data={catalogs}
-            rowCount={3}
+            rowCount={2}
             onClick={onSelectCampaign}
-            aspectRatio={20/24}
+            aspectRatio={3 / 4}
           />
         </div>
       </Modal>

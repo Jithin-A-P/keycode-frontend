@@ -20,7 +20,7 @@ const CardGrid = (props) => {
   
   return (
     <Grid container spacing={5}>
-      {data.map((item) => (
+      {data?.slice(0, 10).map((item) => (
         <Grid item xs={12} sm={4} md={rowCount} key={item.id}>
         <div onClick={() => onClick(item)}>
           <Card sx={{ maxWidth: 200, borderRadius: 4, boxShadow: 4 }} className='card-styles'>

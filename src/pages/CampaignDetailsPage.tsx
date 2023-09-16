@@ -77,7 +77,6 @@ const CampaignDetailsPage = () => {
                         {renderStatus(campaignData?.status)}
                     </div>
                     <Typography style={{ marginTop: 20 }}>{getFormattedDate(campaignData?.startDate)} - {getFormattedDate(campaignData?.endDate)}</Typography>
-                    <Typography style={{ marginTop: 8, textTransform: 'capitalize' }}>{campaignData?.name}</Typography>
                     <Typography style={{ marginTop: 8 }}>{campaignData?.totalPrice ? `₹${campaignData?.totalPrice}` : '-'}</Typography>
                     <Typography style={{ marginTop: 8 }}>Frequency: {campaignData?.frequency}</Typography>
                 </div>
@@ -97,8 +96,8 @@ const CampaignDetailsPage = () => {
                         <AccordionDetails>
                             {i.selectedTimeslots.map(slot => (
                                 <div key={slot.id} className='shadow-sm flex gap-10 mb-5 p-2 mr-2'>
-                                    <div className='w-[150px]'><AccessTimeIcon fontSize='small' /> {time[slot.time]}</div>
-                                    <div><CurrencyRupeeIcon fontSize='small' /> {slot.pricePerSecond} /sec</div>
+                                    <div>{time[slot.time]}</div>
+                                    <div>₹{slot.pricePerSecond} / sec</div>
                                     {campaignData?.status === 'ACTIVE' ? <div className='flex items-center gap-1 justify-end'>
                                         <div className='loader__dot rounded w-2 h-2 bg-green-500' />
                                         <span className='text-[10px] text-green-500'>LIVE</span>
