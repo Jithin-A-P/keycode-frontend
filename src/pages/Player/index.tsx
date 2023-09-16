@@ -2,6 +2,7 @@ import { Button } from '@components';
 import { usePushToKioskQueueByIdMutation } from '@services/api';
 import { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
+import {BASE_URL} from '@pages/constants'
 
 const Player = () => {
   const socket = useRef(null);
@@ -11,7 +12,7 @@ const Player = () => {
   const [pushToKioskQueueById, result] = usePushToKioskQueueByIdMutation();
   
   useEffect(() => {
-    socket.current = (io as any).connect('http://192.168.3.91:5050', {
+    socket.current = (io as any).connect(`${BASE_URL}:5050`, {
       query: {
         // type: 'playerA',
         // screenId: 123,

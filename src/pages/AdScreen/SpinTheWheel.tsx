@@ -1,7 +1,9 @@
 import { Button } from '@components';
 import { Card, Dialog } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Wheel, WheelDataType } from 'react-custom-roulette';
+import io from 'socket.io-client';
+import {BASE_URL} from '@pages/constants';
 import FrowningFace from '../../assets/icons/Frowning';
 
 const multi = 0.7;
@@ -62,10 +64,12 @@ function getWinningNumber() {
   return result;
 }
 
-const SpinTheWheel = () => {
+const SpinTheWheel = ({ triggerAfterSpin }) => {
   const [startSpin, setStartSpin] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [prize] = useState(getWinningNumber());
+  const [prize] = useState(0);
+
+  const socket = useRef(null);
 
   const showWinnings = () => {
     const { option } = data[prize];
@@ -78,11 +82,33 @@ const SpinTheWheel = () => {
     //   );
     // }
   };
-
   const startRouletteSpin = () => {
     setStartSpin(true);
+    setTimeout(()=> {
+      triggerAfterSpin();
+    },10000)
   };
 
+
+  useEffect(() => {
+    socket.current = (io as any).connect(`${BASE_URL}:5050`, {
+      query: {
+        type: 'screen',
+        screenId: 1
+      },
+    });
+    socket.current.on("connect", () => {
+      console.log("connected to Game tUg of war");
+      console.log(socket.current.id); // x8WIv7-mJelg7on_ALbx
+      socket.current.emit("game_started");
+    });
+    socket.current.on('spin', ()=> {
+      startRouletteSpin()
+    });
+  }, []);
+
+
+  
   const winData = data[prize];
 
   return (
@@ -117,6 +143,7 @@ const SpinTheWheel = () => {
         outerBorderColor='#14021D'
         radiusLineColor='#FFF853'
         radiusLineWidth={1}
+        spinDuration={0.5}
       />
       {/* <button onClick={startRouletteSpin} disabled={startSpin} type="button" style={{
         color: '#FFFFFF', fontSize: 74
@@ -133,7 +160,7 @@ const SpinTheWheel = () => {
               <img src={winData.image.uri} alt='' className='object-contain' />
             </div>
             <div className='mt-10'>
-              <p>Congrats you have won {winData.option} coupon worth Rs.500. Check your phone for more details</p>
+              <p>Congrats you have won {winData.option} coupon worth Rs.200. Check your phone for more details</p>
             </div>
           </div>
         </Card>

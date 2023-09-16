@@ -14,7 +14,7 @@ const CardGrid = (props) => {
     const {data, onClick, rowCount = 2, aspectRatio = 9 / 16} = props;
   
   const isYoutubeVideo = (url) =>
-    url.includes('youtube.com') || url.includes('youtu.be');
+    url?.includes('youtube.com') || url?.includes('youtu.be');
 
   const isVideo = (url) => /\.(mp4|mpg|mpeg4|webp|avi|mkv)$/.test(url);
   

@@ -66,6 +66,9 @@ const MobileLanding = () => {
       </div>
       <div className='scrolling-wrapper'>
         <img
+          onClick={() => {
+            navigate('/game-controller/1')
+          }}
           className='game-card'
           src={require(`../../assets/images/games/tug-of-war.png`)}
           alt=''

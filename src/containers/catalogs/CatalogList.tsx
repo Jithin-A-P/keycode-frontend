@@ -10,7 +10,7 @@ const CatalogList = () => {
       <div className='text-xl font-semibold my-[14px] text-jaguar'>
         Catalogs
       </div>
-      <div className='overflow-y-auto rounded-lg h-full'>
+      <div className=' rounded-lg h-full'>
         {catalogs && <CardGrid data={catalogs} />}
       </div>
     </>

@@ -5,16 +5,19 @@ export default {
     gridAutoRows: 'auto'
   },
     timeSlotCard:{
-      border: '1px solid black'
+      border: '1px solid black',
+      borderRadius: '20px',
     },
     timeSlotwrapper:{
       display: 'grid',
       gridGap:'20px',
-      gridTemplateColumns: 'repeat(auto-fit, 300px)',
+      gridTemplateColumns: 'repeat(auto-fit, 200px)',
       gridAutoRows: 'auto',
     },
     selectedData:{
-      border: '1px solid red',
+      border: '1px solid green',
+      backgroundColor: 'green',
+      color: 'white',
       borderRadius: '20px'
     },
     buttonContainer:{

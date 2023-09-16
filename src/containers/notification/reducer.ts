@@ -4,8 +4,10 @@ import { NotificationType } from './types';
 
 const initialState: {
   notifications: NotificationType[];
+  data: any;
 } = {
   notifications: [],
+  data: {},
 };
 
 export const notificationsReducerSlice = createSlice({
@@ -25,9 +27,12 @@ export const notificationsReducerSlice = createSlice({
       );
       state.notifications = [...notificationsArray];
     },
+    storeData: (state, { payload }) => {
+      state.data = payload;
+    },
   },
 });
 
-export const { showNotifier, hideNotifier } = notificationsReducerSlice.actions;
+export const { showNotifier, hideNotifier, storeData } = notificationsReducerSlice.actions;
 
 export default notificationsReducerSlice.reducer;

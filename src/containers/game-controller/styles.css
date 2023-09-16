@@ -8,8 +8,9 @@
 
 .game-header {
     font-family: 'Syne', cursive;
-    font-size: 32pt;
+    font-size: 24pt;
     font-weight: 600;
+    color: white;
 }
 
 .game-button {
