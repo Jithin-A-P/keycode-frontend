@@ -7,6 +7,7 @@ import {
 } from '@services/api';
 import { io } from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
+import {BASE_URL} from '@pages/constants'
 
 const GameController = () => {
   const socket = useRef(null);
@@ -31,7 +32,7 @@ const GameController = () => {
 
   useEffect(() => {
     check();
-    socket.current = (io as any).connect('http://192.168.3.91:5050', {
+    socket.current = (io as any).connect(`${BASE_URL}:5050`, {
       query: {
         // type: 'playerA',
         // screenId: 123,

@@ -1,9 +1,10 @@
 /* eslint-disable import/no-cycle */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {BASE_URL} from '@pages/constants'
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://192.168.3.91:5000/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}:5000/api` }),
   endpoints: (builder) => ({
     getCatalogs: builder.query({
       query: () => `/medias`,
