@@ -74,7 +74,7 @@ const Games = (props) =>{
             width: '430px',
             transform: `translateY(${ropeYState * 2}%)`,
             position: 'absolute',
-            top: '-63%',
+            top: '-85%',
           }}
           src={require('../../assets/icons/tug-of-war.png')}
           alt='asd'

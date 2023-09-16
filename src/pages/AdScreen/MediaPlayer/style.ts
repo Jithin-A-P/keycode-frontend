@@ -30,7 +30,6 @@ export default {
       textAlign: 'center' as const,
       margin:'auto',
       fontFamily: 'Syne',
-      fontSize: '47px'
     },
     bottomRight: {
       display: 'flex',

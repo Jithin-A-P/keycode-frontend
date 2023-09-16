@@ -87,10 +87,11 @@ const MediaPlayer = (props) => {
     if (mediaType === 'announcement') {
       return (
         <div style={styles.announcementBanner}>
-          <div style={{ height: '100%'}}>
-          <div style={styles.announcementText}>
-            {data?.media?.title ?? 'Happy birthday'}
-          </div></div>
+          <div style={{ height: '100%' }}>
+            <div style={styles.announcementText}>
+              {data?.media?.title ?? 'Happy birthday'}
+            </div>
+          </div>
         </div>
       );
     }
@@ -117,16 +118,16 @@ const MediaPlayer = (props) => {
         <div style={styles.bottomLeft}>
           {!isDisableFlip ? (
             <ReactCardFlip isFlipped={flip} flipDirection='vertical'>
-              <div className='playAndWin font-semibold' style={styles.text}>
+              <div className='playAndWin font-semibold text-[100px]' style={styles.text}>
                 PLAY & WIN
               </div>
-              <div style={styles.text}>
-                Instant Uploads
+              <div className='playAndWin text-[75px]' style={styles.text}>
+                INSTANT UPLOADS
               </div>
             </ReactCardFlip>
           ) : (
             <div className='flex mr-10'>
-              <p style={styles.text}>Waiting for next player...</p>
+              <p style={styles.text} className='text-[47px]'>Waiting for next player...</p>
               <img src='/gamepad.png' alt='' />
             </div>
           )}

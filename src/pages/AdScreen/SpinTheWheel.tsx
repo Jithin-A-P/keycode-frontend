@@ -113,7 +113,7 @@ const SpinTheWheel = ({ triggerAfterSpin }) => {
 
   return (
    
-    <main className='h-screen w-full flex flex-col items-center mt-40' >
+    <main className='h-screen w-full flex flex-col items-center mt-[40%]' >
         <div style={{
             color: '#FFFFFF', fontSize: 60, fontWeight: 700,
             boxShadow: '10px 24px 4px 0px rgba(0, 0, 0, 0.25)',
