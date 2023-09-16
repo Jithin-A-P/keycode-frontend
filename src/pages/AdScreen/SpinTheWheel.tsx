@@ -3,6 +3,7 @@ import { Card, Dialog } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { Wheel, WheelDataType } from 'react-custom-roulette';
 import io from 'socket.io-client';
+import {BASE_URL} from '@pages/constants';
 import FrowningFace from '../../assets/icons/Frowning';
 
 const multi = 0.7;
@@ -90,7 +91,7 @@ const SpinTheWheel = ({ triggerAfterSpin }) => {
 
 
   useEffect(() => {
-    socket.current = (io as any).connect('http://192.168.3.91:5050', {
+    socket.current = (io as any).connect(`${BASE_URL}:5050`, {
       query: {
         type: 'screen',
         screenId: 1

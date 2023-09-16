@@ -4,7 +4,6 @@ import Flappy from '@pages/Games/Flappy';
 import TugOfWar from '@pages/Games';
 import MediaPlayer from './MediaPlayer';
 import SpinThewheel from './SpinTheWheel';
-import styles from './style';
 
 const mockData = [
   {
@@ -49,7 +48,10 @@ const AdScreen = () => {
   }, [data, screenType]);
 
   const onGameEnd = () =>{
+    setTimeout(()=>{
+
     setScreenType('SPIN_THE_WHEEL');
+    },2000)
   }
 
   const triggerAfterSpin=()=>{

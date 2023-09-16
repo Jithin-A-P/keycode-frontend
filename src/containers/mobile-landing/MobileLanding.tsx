@@ -49,7 +49,7 @@ const MobileLanding = () => {
   );
 
   return (
-    <div>
+    <div className='mx-4 my-7'>
       <h2 className='mobile-head'>HI, PLAYER! READY TO PLAY?</h2>
       <br />
       <div className='games-header'>
@@ -66,6 +66,9 @@ const MobileLanding = () => {
       </div>
       <div className='scrolling-wrapper'>
         <img
+          onClick={() => {
+            navigate('/game-controller/1')
+          }}
           className='game-card'
           src={require(`../../assets/images/games/tug-of-war.png`)}
           alt=''
@@ -91,7 +94,7 @@ const MobileLanding = () => {
           '#0682EF',
           '#094ED3',
           'announcement.png',
-          'Announcement\nLink',
+          'Broadcast\nMessage',
           37,
           37,
           () => navigate(RoutePaths.MOBILE_ANNOUNCEMENT)

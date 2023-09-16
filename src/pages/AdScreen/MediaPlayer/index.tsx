@@ -3,10 +3,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import ReactPlayer from 'react-player';
 import ReactCardFlip from 'react-card-flip';
+import { QR_CODE } from '@pages/constants';
 import styles from './style';
 import './MediaPlayer.css';
 
-const qrLink = 'Hello';
+const qrLink = QR_CODE;
 
 const MediaPlayer = (props) => {
   const { mediaType, onVideoend, data } = props;
@@ -32,9 +33,9 @@ const MediaPlayer = (props) => {
   }, []);
 
   useEffect(() => {
-    setInterval(() => {
-      setIsDisableFlip(true);
-    }, 10000);
+    // setInterval(() => {
+    //   // setIsDisableFlip(true);
+    // }, 10000);
     interval = setInterval(() => {
       setFlip((prev) => !prev);
     }, 2000);
