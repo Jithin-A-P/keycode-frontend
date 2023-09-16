@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import { useParams } from 'react-router-dom';
 import './styles.css';
 import { useEffect, useRef, useState } from 'react';
@@ -77,6 +78,7 @@ const GameController = () => {
       // waiting for the second player to scan
     }
   }, [result.data]);
+  console.log(result.data)
 
   if (!gameAlreadyRunning) {
     return (
@@ -86,12 +88,13 @@ const GameController = () => {
         ) : (
     <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
           <button
-            style={{  backgroundColor: '#555555',
+            style={{  backgroundColor: result.data.player === 'playerA' ? 'red':'purple',
               borderRadius: '250px',
               marginTop: '150px',
               fontSize: '26px',
               color: '#ffffff',
-              padding: '100px'
+              padding: '100px',
+              pointerEvents: 'none'
             }}
             type='button'
             onClick={() => {
