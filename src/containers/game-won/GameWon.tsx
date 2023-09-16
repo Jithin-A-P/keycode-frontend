@@ -3,6 +3,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import { useEffect, useState } from 'react';
 import {useLazyGetStartSpinTriggerQuery} from '@services/api'
 import { Card, Dialog } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 enum SpinStatus {
   SPINNING,
@@ -11,6 +12,7 @@ enum SpinStatus {
 }
 
 const GameWon = () => {
+  const navigate =  useNavigate()
   const [spinStatus, setSpinStatus] = useState(SpinStatus.NOT_SPINNED);
   const [showModal, setShowModal] = useState(false);
   const [trigger]= useLazyGetStartSpinTriggerQuery()
@@ -26,6 +28,7 @@ const GameWon = () => {
     if(showModal){
       setTimeout(()=>{
         setShowModal(false)
+        navigate('/screens/1/1')
       }, 6000)
     }
 
