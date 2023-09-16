@@ -25,6 +25,7 @@ const MobileAnnouncementPage = () => {
       title: anouncementText,
       type: 'announcement',
       name: '',
+      instant: true
     });
     if (response?.error != null) {
       setFlaggedMessage(response?.error?.data?.message);

@@ -27,7 +27,8 @@ const MobileYoutubeLinkPage = () => {
     updateAnnouncement({
       url: youtubeLink,
       type: 'youtube',
-      name: ''
+      name: '',
+      instant: true
     })
     setTimeout(() => {
        navigate(RoutePaths.MOBILE_HOME)
